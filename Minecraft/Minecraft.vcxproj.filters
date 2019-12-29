@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="Block.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="Chunk.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="Model.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\res\include\glad\glad.c">
+      <Filter>Additional files</Filter>
+    </ClCompile>
+    <ClCompile Include="stb_image.cpp">
+      <Filter>Additional files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Camera.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="Block.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="Model.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="Shader.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\res\include\stb_image.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="Chunk.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Header files">
+      <UniqueIdentifier>{4a2f25ef-de6c-4be4-be1e-ff293a0ee9d1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files">
+      <UniqueIdentifier>{d682f772-d48e-4b2b-a19a-960ef9870847}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Additional files">
+      <UniqueIdentifier>{81aa0316-ba2e-496b-83a8-829107f9f66b}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
