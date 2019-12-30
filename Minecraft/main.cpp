@@ -30,6 +30,10 @@ bool firstMouse = true;
 float deltaTime = 0.0f;
 float lastFrame = 0.0f;
 
+//chunks (numberOfChunks is a perfect square)
+int chunkNumber = 0;
+int numberOfChunks = 4;
+
 int main() {
 	//initialize the window
 	glfwInit();
@@ -58,13 +62,18 @@ int main() {
 	
 	Shader shaderProgram("shaders/vertexShader.vs", "shaders/fragementShader.fs");
 
-	Chunk block(shaderProgram);
+	
 	//model matrix
-	glm::mat4 model = glm::mat4(1.0f);
+	//in chunk class
 	//view matrix
 	//not here rn
 	//projection matriy
 	glm::mat4 projection = glm::perspective(glm::radians(45.0f), (float)screenWidth / (float)screenHeight, 0.1f, 100.0f);
+	
+	//initialize chunks
+	std::vector<Chunk> chunks(numberOfChunks);
+	for (int i = 0; i < chunks.size(); i++) chunks[i].loadChunk(shaderProgram, chunkNumber, sqrt(numberOfChunks));
+	
 
 	//render loop 
 	while (!glfwWindowShouldClose(window)) {
@@ -84,12 +93,13 @@ int main() {
 		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-		//forward the model, view and projection matrices
+		//forward the view and projection matrices (they're static)
 		shaderProgram.setMat4("view", view);
-		shaderProgram.setMat4("projection", projection);		
-		shaderProgram.setMat4("model", model);
+		shaderProgram.setMat4("projection", projection);	
 
-		block.drawChunk(shaderProgram,model);
+		//draw the fucking chunks
+		for (int i = 0; i < chunks.size(); i++) chunks[i].drawChunk(shaderProgram);
+		
 		//------------
 		glfwSwapBuffers(window);
 		glfwPollEvents();

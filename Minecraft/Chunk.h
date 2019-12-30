@@ -7,17 +7,21 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
+#include <math.h>
+
 class Chunk {
 public:
-	Chunk(Shader shader) {
-		blocks.resize(chunkVolume);
-		for (int i = 0; i < chunkVolume ; i++) {
-			blocks[i].loadBlock(shader, tex);
-		}
+	Chunk() = default;
+	Chunk(Shader shader, int &chunkNumber, int chunkMult){
+		loadChunk(shader, chunkNumber, chunkMult);
 	}
-	void drawChunk(Shader shader, glm::mat4 model);
+	void loadChunk(Shader shader, int &chunkNumber, int chunkMult);
+	void drawChunk(Shader shader);
 //varibles
 	std::vector<Block> blocks;
-	const int chunkSize = 16, chunkArea = chunkSize * chunkSize, chunkVolume = chunkArea * chunkSize;
+	const int chunkSize = 4, chunkArea = chunkSize * chunkSize, chunkVolume = chunkArea * chunkSize;
+	int chunkMult, chunkNumber;
 	Texture tex;
+	glm::mat4 model;
+	int modelX = 0, modelZ = 0;
 };
