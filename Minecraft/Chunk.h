@@ -9,19 +9,19 @@
 
 #include <math.h>
 
+
+
 class Chunk {
 public:
+//constructors
 	Chunk() = default;
-	Chunk(Shader shader, int &chunkNumber, int chunkMult){
-		loadChunk(shader, chunkNumber, chunkMult);
-	}
-	void loadChunk(Shader shader, int &chunkNumber, int chunkMult);
-	void drawChunk(Shader shader);
-//varibles
+//functions
+	void loadChunk(Shader shader, int &chunkNumber, int chunkMult, int chunkSize, Texture tex);
+	void drawChunk(Shader shader, int chunkSize);
+//variables
 	std::vector<Block> blocks;
-	const int chunkSize = 4, chunkArea = chunkSize * chunkSize, chunkVolume = chunkArea * chunkSize;
-	int chunkMult, chunkNumber;
-	Texture tex;
+	int chunkNumber;
 	glm::mat4 model;
 	int modelX = 0, modelZ = 0;
+	std::vector<int> heights;
 };

@@ -19,6 +19,9 @@
     <ClCompile Include="stb_image.cpp">
       <Filter>Additional files</Filter>
     </ClCompile>
+    <ClCompile Include="World.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h">
@@ -43,6 +46,12 @@
       <Filter>Header files</Filter>
     </ClInclude>
     <ClInclude Include="Chunk.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Desktop\PerlinNoise-master\PerlinNoise.hpp">
+      <Filter>Additional files</Filter>
+    </ClInclude>
+    <ClInclude Include="World.h">
       <Filter>Header files</Filter>
     </ClInclude>
   </ItemGroup>

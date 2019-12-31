@@ -8,7 +8,7 @@
 #include "Shader.h"
 #include "Camera.h"
 #include "Model.h"
-#include "Chunk.h"
+#include "World.h"
 
 #include <stb_image.h>
 #include <iostream>
@@ -31,8 +31,7 @@ float deltaTime = 0.0f;
 float lastFrame = 0.0f;
 
 //chunks (numberOfChunks is a perfect square)
-int chunkNumber = 0;
-int numberOfChunks = 4;
+int numberOfChunks = 1;
 
 int main() {
 	//initialize the window
@@ -69,11 +68,8 @@ int main() {
 	//not here rn
 	//projection matriy
 	glm::mat4 projection = glm::perspective(glm::radians(45.0f), (float)screenWidth / (float)screenHeight, 0.1f, 100.0f);
-	
-	//initialize chunks
-	std::vector<Chunk> chunks(numberOfChunks);
-	for (int i = 0; i < chunks.size(); i++) chunks[i].loadChunk(shaderProgram, chunkNumber, sqrt(numberOfChunks));
-	
+		
+	World world(numberOfChunks, shaderProgram);
 
 	//render loop 
 	while (!glfwWindowShouldClose(window)) {
@@ -97,8 +93,7 @@ int main() {
 		shaderProgram.setMat4("view", view);
 		shaderProgram.setMat4("projection", projection);	
 
-		//draw the fucking chunks
-		for (int i = 0; i < chunks.size(); i++) chunks[i].drawChunk(shaderProgram);
+		world.drawWorld(shaderProgram);
 		
 		//------------
 		glfwSwapBuffers(window);
