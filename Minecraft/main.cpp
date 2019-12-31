@@ -58,6 +58,7 @@ int main() {
 
 	glEnable(GL_DEPTH_TEST);
 	glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+	//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 	
 	Shader shaderProgram("shaders/vertexShader.vs", "shaders/fragementShader.fs");
 

@@ -22,7 +22,10 @@ void World::generateHeightMap()
 		for (int y = 0; y < (chunkSize * chunkMult); y++) {
 			float temp = floor(map(abs(noiseMap.noise(x + add, y + add, 0.0)), 0, 0.8, (chunkSize / 4) * 3 - 1, chunkSize ));
 			heights[x + (y * chunkSize * chunkMult)] = temp;
-			add += 0.0723f;
+			
+			std::default_random_engine engine;
+			std::uniform_real_distribution<float> dist(0.01f, 0.1f);
+			add += dist(engine);
 		}
 	}
 	//pass the map to every chunk

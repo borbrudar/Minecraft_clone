@@ -14,6 +14,10 @@ public:
 
 		//generate the height map
 		generateHeightMap();
+
+		std::default_random_engine engine;
+		std::uniform_real_distribution<float> dist(0.01f, 0.1f);
+		add = dist(engine);
 	};
 	//functions
 	void drawWorld(Shader shader);
@@ -30,5 +34,5 @@ private:
 	Texture tex;
 	std::vector<int> heights;
 	siv::PerlinNoise noiseMap;
-	float add = 0.1f;
+	float add;
 };
