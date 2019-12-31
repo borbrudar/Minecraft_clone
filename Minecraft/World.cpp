@@ -18,10 +18,10 @@ void World::generateHeightMap()
 	int worldSize = chunkArea * numberOfChunks;
 	heights.resize(worldSize);
 
-	for (int x = 0; x < (chunkSize * numberOfChunks); x++) {
-		for (int y = 0; y < (chunkSize * numberOfChunks); y++) {
+	for (int x = 0; x < (chunkSize * chunkMult); x++) {
+		for (int y = 0; y < (chunkSize * chunkMult); y++) {
 			float temp = floor(map(abs(noiseMap.noise(x + add, y + add, 0.0)), 0, 0.8, (chunkSize / 4) * 3 - 1, chunkSize ));
-			heights[x + (y * chunkSize)] = temp;
+			heights[x + (y * chunkSize * chunkMult)] = temp;
 			add += 0.0723f;
 		}
 	}
@@ -30,15 +30,11 @@ void World::generateHeightMap()
 		chunks[i].heights.resize(chunkArea);
 			for (int x = 0; x < chunkSize; x++) {
 				for (int y = 0; y < chunkSize; y++) {
-					float temp_x = chunks[i].chunkNumber * chunkSize;
-					float temp_y = floor(temp_x / chunkSize);
-					//fix this
-					chunks[i].heights[x + (y * chunkSize)] = heights[x + (y * chunkSize)];
+					float temp_x = chunkSize * chunks[i].modelX + x;
+					float temp_y = chunkSize * chunks[i].modelZ + y;
+					chunks[i].heights[x + (y * chunkSize)] = heights[temp_x + temp_y];
 				}
 			}
-			if (i == 0) {
-				int c = 0;
-		}
 	}
 
 
