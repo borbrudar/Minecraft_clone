@@ -16,8 +16,9 @@ public:
 //constructors
 	Chunk() = default;
 //functions
-	void loadChunk(Shader shader, int &chunkNumber, int chunkMult, int chunkSize, Texture tex);
+	void loadChunk(Shader shader, int &chunkNumber, int chunkMult, int chunkSize, Block_Heavy& data);
 	void drawChunk(Shader shader, int chunkSize);
+	void hideBlocks();
 //variables
 	std::vector<Block> blocks;
 	int chunkNumber;

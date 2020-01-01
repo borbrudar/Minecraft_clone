@@ -9,7 +9,8 @@ void World::drawWorld(Shader shader)
 void World::loadChunks(Shader shader)
 {
 	//load the fucking chunks
-	for (int i = 0; i < chunks.size(); i++) chunks[i].loadChunk(shader, chunkNumber, chunkMult, chunkSize, tex);
+	for (int i = 0; i < chunks.size(); i++) chunks[i].loadChunk(shader, chunkNumber, chunkMult, chunkSize, megaBlock);
+
 }
 
 void World::generateHeightMap()
@@ -39,7 +40,6 @@ void World::generateHeightMap()
 				}
 			}
 	}
-
 
 }
 

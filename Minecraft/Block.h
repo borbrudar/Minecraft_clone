@@ -8,6 +8,7 @@
 
 #include "Shader.h"
 #include "Texture.h"
+#include "Block_Heavy.h"
 
 #include <string>
 
@@ -20,10 +21,10 @@ class Block {
 public:
 	//default constructor and function that loads up the grass texture
 	Block() = default;
-	Block(Shader shader, Texture &texture) {
-		loadBlock(shader, texture);
+	Block(Shader shader) {
+		//loadBlock(shader);
 	}
-	void loadBlock(Shader shader, Texture &texture);
+	void loadBlock(Shader shader, Block_Heavy& data);
 	//passes shader to model's draw function
 	void draw(Shader shader);
 	void act(Shader shader);

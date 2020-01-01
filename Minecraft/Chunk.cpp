@@ -1,25 +1,14 @@
 #include "Chunk.h"
 
-void Chunk::loadChunk(Shader shader, int & chunkNumber, int chunkMult, int chunkSize, Texture tex)
+void Chunk::loadChunk(Shader shader, int & chunkNumber, int chunkMult, int chunkSize, Block_Heavy& data)
 { 
 	
 	int chunkVolume = chunkSize * chunkSize * chunkSize;
 	int chunkArea = chunkSize * chunkSize;
 	//initialize blocks
 	blocks.resize(chunkVolume);
-	for (int i = 0; i < chunkVolume; i++) blocks[i].loadBlock(shader, tex);
+	for (int i = 0; i < chunkVolume; i++) blocks[i].loadBlock(shader, data);
 	model = glm::mat4(1.f);
-
-	//discard some for faster drawing (update when adding break/place mechanic)
-	/*for (int x = 0; x < chunkSize; x++) {
-		for (int y = 0; y < chunkSize; y++) {
-			for (int z = 0; z < chunkSize; z++) {
-				if (y > 0 && y < 2) blocks[x * y * z].isVisible = false;
-				if (x == 0 || x == (chunkSize - 1)) blocks[x * y * z].isVisible = true;
-				if (z == 0 || z == (chunkSize - 1)) blocks[x * y * z].isVisible = true;
-			}
-		}
-	}*/
 
 	//initialize the model matrix multipliers (different for each chunk)
 	modelX = (chunkNumber % chunkMult);
@@ -53,4 +42,18 @@ void Chunk::drawChunk(Shader shader, int chunkSize)
 		}
 	}
 
+}
+
+void Chunk::hideBlocks()
+{
+	//hide unnecessary blocks
+	for (int i = 0; i < blocks.size(); i++) {
+		Block b1 = blocks[i];
+
+		for (int j = 0; j < blocks.size(); j++) {
+			Block b2 = blocks[j];
+
+			
+		}
+	}
 }

@@ -54,6 +54,9 @@
     <ClInclude Include="World.h">
       <Filter>Header files</Filter>
     </ClInclude>
+    <ClInclude Include="Block_Heavy.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header files">
