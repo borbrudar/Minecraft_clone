@@ -16,12 +16,24 @@ void Chunk::loadChunk(Shader shader, int & chunkNumber, int chunkMult, int chunk
 	this->chunkNumber = chunkNumber;
 	chunkNumber++;
 
-	
+	//just a lil optimization
+	for (int x = 0; x < chunkSize; x++) {
+		for (int y = 0; y < chunkSize; y++) {
+			for (int z = 0; z < chunkSize; z++) {
+				//position shit
+				blocks[x * y * z].posX = x + (modelX * chunkSize);
+				blocks[x * y * z].posY = y;
+				blocks[x * y * z].posZ = z + (modelZ * chunkSize);
+			}
+			
+		}
+	}
 }
 
 void Chunk::drawChunk(Shader shader, int chunkSize)
 {
-	//a guide for drawing them blocks
+
+	//a guide for transformin them blocks
 	//model[3][0 - x axis, 1 - y ax., 2 - z ax.; + = right,up,back; - = left,down,front] = 1 (1 block);
 
 	//draw all them blocks
@@ -37,7 +49,6 @@ void Chunk::drawChunk(Shader shader, int chunkSize)
 					shader.setMat4("model", model);
 					blocks[x * y * z].draw(shader);
 				}
-				
 			}
 		}
 	}
