@@ -7,14 +7,17 @@ class World {
 public:
 	//constructors
 	World(int numberOfChunks, Shader shader) : numberOfChunks(numberOfChunks) {
+		//utility
 		chunks.resize(numberOfChunks);
-		chunkMult = sqrt(chunkSize);
+		chunkMult = (int)sqrt(chunkSize);
+		//load the texture(s)
+		megaBlock.loadBlock(shader);
 
 		//generate the height map
 		generateHeightMap();
 
 		//load da chunks
-		for (int i = 0; i < chunks.size(); i++) chunks[i].loadChunk(shader, chunkNumber, chunkMult, chunkSize, megaBlock);
+		for (unsigned int i = 0; i < chunks.size(); i++) chunks[i].loadChunk(shader, chunkNumber, chunkMult, chunkSize);
 
 		std::default_random_engine engine;
 		std::uniform_real_distribution<float> dist(0.01f, 0.1f);

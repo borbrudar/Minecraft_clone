@@ -3,14 +3,14 @@
 void World::drawWorld(Shader shader)
 {
 	//draw the fucking chunks
-	for (int i = 0; i < chunks.size(); i++) chunks[i].drawChunk(shader, chunkSize);
+	for (unsigned int i = 0; i < chunks.size(); i++) chunks[i].drawChunk(shader, chunkSize, megaBlock);
 
 }
 
 void World::loadChunks(Shader shader)
 {
 	//load the fucking chunks
-	for (int i = 0; i < chunks.size(); i++) chunks[i].loadChunk(shader, chunkNumber, chunkMult, chunkSize, megaBlock);
+	for (unsigned int i = 0; i < chunks.size(); i++) chunks[i].loadChunk(shader, chunkNumber, chunkMult, chunkSize);
 
 }
 
@@ -22,7 +22,7 @@ void World::generateHeightMap()
 
 	for (int x = 0; x < (chunkSize * chunkMult); x++) {
 		for (int y = 0; y < (chunkSize * chunkMult); y++) {
-			float temp = floor(map(abs(noiseMap.noise(x + add, y + add, 0.0)), 0, 0.8, (chunkSize / 4) * 3 - 1, chunkSize ));
+			int temp = floor(map(abs(noiseMap.noise(x + add, y + add, 0.0)), 0, 0.8, (chunkSize / 4) * 3 - 1, chunkSize ));
 			heights[x + (y * chunkSize * chunkMult)] = temp;
 			
 			std::default_random_engine engine;

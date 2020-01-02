@@ -23,8 +23,8 @@ void processInput(GLFWwindow *window);
 int screenWidth = 800, screenHeight = 600;
 //camera
 Camera camera(glm::vec3(0.0f, 0.0f, 3.0f));
-float lastX = (float)screenWidth / 2.0;
-float lastY = (float)screenHeight / 2.0;
+float lastX = (float)(screenWidth / 2.f);
+float lastY = (float)(screenHeight / 2.f);
 bool firstMouse = true;
 
 // time
@@ -77,7 +77,7 @@ int main() {
 	//render loop 
 	while (!glfwWindowShouldClose(window)) {
 		//calculate time
-		float currentFrame = glfwGetTime();
+		float currentFrame = (float)glfwGetTime();
 		deltaTime = currentFrame - lastFrame;
 		lastFrame = currentFrame;
 
@@ -133,16 +133,16 @@ void processInput(GLFWwindow *window)
 void mouse_callback(GLFWwindow* window, double xpos, double ypos) {
 	if (firstMouse)
 	{
-		lastX = xpos;
-		lastY = ypos;
+		lastX = (float)xpos;
+		lastY = (float)ypos;
 		firstMouse = false;
 	}
 
-	float xoffset = xpos - lastX;
-	float yoffset = lastY - ypos; // reversed since y-coordinates go from bottom to top
+	float xoffset = (float)xpos - lastX;
+	float yoffset = lastY - (float)ypos; // reversed since y-coordinates go from bottom to top
 
-	lastX = xpos;
-	lastY = ypos;
+	lastX = (float)xpos;
+	lastY = (float)ypos;
 
 	camera.ProcessMouseMovement(xoffset, yoffset);
 }

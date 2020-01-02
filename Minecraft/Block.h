@@ -21,21 +21,12 @@ class Block {
 public:
 	//default constructor and function that loads up the grass texture
 	Block() = default;
-	Block(Shader shader) {
-		//loadBlock(shader);
-	}
-	void loadBlock(Shader shader, Block_Heavy& data);
 	//passes shader to model's draw function
-	void draw(Shader shader);
-	void act(Shader shader);
+	void draw(Shader shader, Block_Heavy &data);
 public:
 	bool isVisible = true;
 	int x, y, z;
 private:
-	//vertex and buffer object
-	unsigned int VAO, VBO;
-	//textures
-	unsigned int texture0;
-	//optimization and block type
+	//block type
 	block_type type = block_type::dirt;
 };

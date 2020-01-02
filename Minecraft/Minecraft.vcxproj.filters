@@ -10,9 +10,6 @@
     <ClCompile Include="main.cpp">
       <Filter>Source files</Filter>
     </ClCompile>
-    <ClCompile Include="Model.cpp">
-      <Filter>Source files</Filter>
-    </ClCompile>
     <ClCompile Include="..\res\include\glad\glad.c">
       <Filter>Additional files</Filter>
     </ClCompile>
@@ -22,27 +19,18 @@
     <ClCompile Include="World.cpp">
       <Filter>Source files</Filter>
     </ClCompile>
+    <ClCompile Include="Block_Heavy.cpp">
+      <Filter>Utility_c</Filter>
+    </ClCompile>
+    <ClCompile Include="Model.cpp">
+      <Filter>Utility_c</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Camera.h">
-      <Filter>Header files</Filter>
-    </ClInclude>
     <ClInclude Include="Block.h">
       <Filter>Header files</Filter>
     </ClInclude>
-    <ClInclude Include="Model.h">
-      <Filter>Header files</Filter>
-    </ClInclude>
     <ClInclude Include="Shader.h">
-      <Filter>Header files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\res\include\stb_image.h">
-      <Filter>Header files</Filter>
-    </ClInclude>
-    <ClInclude Include="Mesh.h">
-      <Filter>Header files</Filter>
-    </ClInclude>
-    <ClInclude Include="Texture.h">
       <Filter>Header files</Filter>
     </ClInclude>
     <ClInclude Include="Chunk.h">
@@ -54,8 +42,23 @@
     <ClInclude Include="World.h">
       <Filter>Header files</Filter>
     </ClInclude>
+    <ClInclude Include="..\res\include\stb_image.h">
+      <Filter>Additional files</Filter>
+    </ClInclude>
     <ClInclude Include="Block_Heavy.h">
-      <Filter>Header files</Filter>
+      <Filter>Utility_h</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>Utility_h</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh.h">
+      <Filter>Utility_h</Filter>
+    </ClInclude>
+    <ClInclude Include="Model.h">
+      <Filter>Utility_h</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture.h">
+      <Filter>Utility_h</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -67,6 +70,12 @@
     </Filter>
     <Filter Include="Additional files">
       <UniqueIdentifier>{81aa0316-ba2e-496b-83a8-829107f9f66b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utility_h">
+      <UniqueIdentifier>{9caa6eb3-a978-437c-b59e-152ebab27b19}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utility_c">
+      <UniqueIdentifier>{49c58fac-6cc2-4b3c-af06-4dfb4d3e3770}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
