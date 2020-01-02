@@ -8,23 +8,6 @@ void Chunk::loadChunk(Shader shader, int & chunkNumber, int chunkMult, int chunk
 	//resize the block vector
 	blocks.resize(chunkVolume);
 
-	//set visibility
-	for (int x = 0; x < chunkSize; x++) {
-		for (int y = 0; y < chunkSize; y++) {
-			for (int z = 0; z < chunkSize; z++) {
-				if (heights[x + (z * chunkSize)] == y) {
-					//position shit
-					blocks[x + chunkSize * (y + (z * chunkSize))].x = x + (modelX * chunkSize);
-					blocks[x + chunkSize * (y + (z * chunkSize))].y = y + modelY;
-					blocks[x + chunkSize * (y + (z * chunkSize))].z = z + (modelZ * chunkSize);
-				} else blocks[x + chunkSize * (y + (chunkSize * z))].isVisible = false;	
-			}
-		}
-	}
-
-	//hide blocks 
-	hideBlocks(chunkSize);
-
 	//initialize the model matrix and matrix multipliers
 	model = glm::mat4(1.f);
 	modelX = (int)(chunkNumber % chunkMult);
@@ -86,10 +69,29 @@ void Chunk::hideBlocks(int chunkSize)
 				if ((b1.z + 1 == b2.z) && (b1.y == b2.y) && (b1.x == b2.x)) pz = true;
 				if ((b1.z - 1 == b2.z) && (b1.y == b2.y) && (b1.x == b2.x)) nz = true;
 			}
-			
-
 		}
 		//set visibility
 		if (px && py && pz && nx && ny && nz) blocks[i].isVisible = false;
 	}
+}
+
+void Chunk::setVisible(int chunkSize)
+{
+	//set visibility according to height
+	for (int x = 0; x < chunkSize; x++) {
+		for (int y = 0; y < chunkSize; y++) {
+			for (int z = 0; z < chunkSize; z++) {
+				if (heights[x + (z * chunkSize)] == y) {
+					//position shit
+					blocks[x + chunkSize * (y + (z * chunkSize))].x = x + (modelX * chunkSize);
+					blocks[x + chunkSize * (y + (z * chunkSize))].y = y + modelY;
+					blocks[x + chunkSize * (y + (z * chunkSize))].z = z + (modelZ * chunkSize);
+				}
+				else blocks[x + chunkSize * (y + (chunkSize * z))].isVisible = false;
+			}
+		}
+	}
+
+	//hide blocks (it does nothing for now)
+	//hideBlocks(chunkSize);
 }

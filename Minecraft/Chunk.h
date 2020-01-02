@@ -14,6 +14,7 @@ public:
 	void loadChunk(Shader shader, int &chunkNumber, int chunkMult, int chunkSize);
 	void drawChunk(Shader shader, int chunkSize, Block_Heavy &data);
 	void hideBlocks(int chunkSize);
+	void setVisible(int chunkSize);
 //variables
 	std::vector<Block> blocks;
 	int chunkNumber;

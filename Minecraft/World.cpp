@@ -4,16 +4,18 @@ World::World(int numberOfChunks, Shader shader) : numberOfChunks(numberOfChunks)
 {
 	//utility
 	chunks.resize(numberOfChunks);
-	chunkMult = (int)sqrt(chunkSize);
+	chunkMult = (int)sqrt(numberOfChunks);
 
 	//load the texture(s)
 	megaBlock.loadBlock(shader);
 
-	//generate the height map (before loading the chunks)
+	//generate the height map 
 	generateHeightMap();
 
-	//load da chunks
+	//load da chunks and set visibility
 	for (unsigned int i = 0; i < chunks.size(); i++) chunks[i].loadChunk(shader, chunkNumber, chunkMult, chunkSize);
+	for (unsigned int i = 0; i < chunks.size(); i++) chunks[i].setVisible(chunkSize);
+	
 }
 
 void World::drawWorld(Shader shader)
@@ -43,7 +45,7 @@ void World::generateHeightMap()
 			heights[x + (y * chunkSize * chunkMult)] = temp;
 
 			std::default_random_engine engine;
-			std::uniform_real_distribution<float> dist(0.001f, 0.5f);
+			std::uniform_real_distribution<float> dist(0.01f, 0.5f);
 			add += dist(engine);
 		}
 	}
@@ -54,7 +56,7 @@ void World::generateHeightMap()
 				for (int y = 0; y < chunkSize; y++) {
 					float temp_x = chunkSize * chunks[i].modelX + x;
 					float temp_y = chunkSize * chunks[i].modelZ + y;
-					chunks[i].heights[x + (y * chunkSize)] = heights[temp_x + temp_y];
+					chunks[i].heights[temp_x + temp_y] = heights[x + (y * chunkSize)];
 				}
 			}
 	}
