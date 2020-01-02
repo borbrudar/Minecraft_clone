@@ -19,23 +19,22 @@ enum class block_type {
 
 class Block {
 public:
-	//constructor  
+	//default constructor and function that loads up the grass texture
 	Block() = default;
-	//function that loads up the grass texture
+	Block(Shader shader) {
+		//loadBlock(shader);
+	}
 	void loadBlock(Shader shader, Block_Heavy& data);
 	//passes shader to model's draw function
 	void draw(Shader shader);
 	void act(Shader shader);
 public:
 	bool isVisible = true;
-	//block type
-	block_type type = block_type::dirt;
-	//other shit idc tbh
-	glm::mat4 model = glm::mat4(1.f);
-	int x, y, z;
 private:
 	//vertex and buffer object
 	unsigned int VAO, VBO;
 	//textures
 	unsigned int texture0;
+	//optimization and block type
+	block_type type = block_type::dirt;
 };

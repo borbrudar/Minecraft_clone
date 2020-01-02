@@ -44,7 +44,7 @@ void Block::loadBlock(Shader shader, Block_Heavy& data)
 
 void Block::draw(Shader shader)
 {
-	//texture shit
+
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, texture0);
 	shader.use();

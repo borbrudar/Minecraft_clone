@@ -10,11 +10,11 @@ public:
 		chunks.resize(numberOfChunks);
 		chunkMult = sqrt(chunkSize);
 
-		//generate the height map
-		generateHeightMap();
-
 		//load da chunks
 		for (int i = 0; i < chunks.size(); i++) chunks[i].loadChunk(shader, chunkNumber, chunkMult, chunkSize, megaBlock);
+
+		//generate the height map
+		generateHeightMap();
 
 		std::default_random_engine engine;
 		std::uniform_real_distribution<float> dist(0.01f, 0.1f);
