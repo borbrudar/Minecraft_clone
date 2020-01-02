@@ -7,7 +7,26 @@ void Chunk::loadChunk(Shader shader, int & chunkNumber, int chunkMult, int chunk
 	int chunkArea = chunkSize * chunkSize;
 	//initialize blocks
 	blocks.resize(chunkVolume);
-	//for (int i = 0; i < chunkVolume; i++) blocks[i].loadBlock(shader, data);
+	//just a lil optimization
+	for (int x = 0; x < chunkSize; x++) {
+		for (int y = 0; y < chunkSize; y++) {
+			for (int z = 0; z < chunkSize; z++) {
+				if (heights[x + (z * chunkSize)] == y) {
+					//position shit
+					blocks[x + chunkSize * (y + (z * chunkSize))].x = x + (modelX * chunkSize);
+					blocks[x + chunkSize * (y + (z * chunkSize))].y = y;
+					blocks[x + chunkSize * (y + (z * chunkSize))].z = z + (modelZ * chunkSize);
+				}
+				else {
+					blocks[x + chunkSize * (y + (chunkSize * z))].isVisible = false;
+				}
+			}
+
+		}
+	}
+
+	hideBlocks(chunkSize);
+	for (int i = 0; i < chunkVolume; i++) if (blocks[i].isVisible) { blocks[i].loadBlock(shader, data); }
 	model = glm::mat4(1.f);
 
 	//initialize the model matrix multipliers (different for each chunk)
@@ -16,21 +35,7 @@ void Chunk::loadChunk(Shader shader, int & chunkNumber, int chunkMult, int chunk
 	this->chunkNumber = chunkNumber;
 	chunkNumber++;
 
-	//just a lil optimization
-	for (int x = 0; x < chunkSize; x++) {
-		for (int y = 0; y < chunkSize; y++) {
-			for (int z = 0; z < chunkSize; z++) {
-				//position shit
-				blocks[x * y * z].x = x + (modelX * chunkSize);
-				blocks[x * y * z].y = y;
-				blocks[x * y * z].z = z + (modelZ * chunkSize);
-			}
-			
-		}
-	}
 
-	buildMesh();
-	loadMesh(shader);
 }
 
 void Chunk::drawChunk(Shader shader, int chunkSize)
@@ -39,49 +44,64 @@ void Chunk::drawChunk(Shader shader, int chunkSize)
 	//a guide for transformin them blocks
 	//model[3][0 - x axis, 1 - y ax., 2 - z ax.; + = right,up,back; - = left,down,front] = 1 (1 block);
 
+	//flatten 3d array into 1d with:
+	//flat[x + width * (y + depth * z)]
+
 	//draw all them blocks
 	for (int x = 0; x < chunkSize; x++) {
 		for (int y = 0; y < chunkSize; y++) {
 			for (int z = 0; z < chunkSize; z++) {
-				if (heights[x * z] > y && blocks[x * y * z].isVisible) {
+				if (blocks[x + chunkSize * (y + (z * chunkSize))].isVisible) {
 					//apply transformation 
 					model[3][0] = x + (modelX * chunkSize);
 					model[3][1] = y;
-					//model[3][2] = z + (modelZ * chunkSize);
+					model[3][2] = z + (modelZ * chunkSize);
 					//pass transformation to the shader and draw
 					shader.setMat4("model", model);
-					//blocks[x * y * z].draw(shader);
+					blocks[x + chunkSize * (y + (z * chunkSize))].draw(shader);
 				}
 			}
 		}
 	}
 	
-	//texture shit
-	//glActiveTexture(GL_TEXTURE0);
-//	glBindTexture(GL_TEXTURE_2D, texture0);
-	//shader.use();
-
-	// render box
-	glBindVertexArray(VAO);
-	glDrawArrays(GL_TRIANGLES, 0, vertices.size());
 	
 }
 
-void Chunk::hideBlocks()
+void Chunk::hideBlocks(int chunkSize)
 {
 	//hide unnecessary blocks
 	for (int i = 0; i < blocks.size(); i++) {
 		Block b1 = blocks[i];
-
+		//check in every direction
+		bool px = false, py = false, pz = false, nx = false, ny = false, nz = false;
 		for (int j = 0; j < blocks.size(); j++) {
 			Block b2 = blocks[j];
+			if (b2.isVisible) {
+				if ((b1.x + 1 == b2.x) && (b1.y == b2.y) && (b1.z == b2.z)) px = true;
+				if ((b1.x - 1 == b2.x) && (b1.y == b2.y) && (b1.z == b2.z)) nx = true;
+				if ((b1.y + 1 == b2.y) && (b1.x == b2.x) && (b1.z == b2.z)) py = true;
+				if ((b1.y - 1 == b2.y) && (b1.x == b2.x) && (b1.z == b2.z)) ny = true;
+				if ((b1.z + 1 == b2.z) && (b1.y == b2.y) && (b1.x == b2.x)) pz = true;
+				if ((b1.z - 1 == b2.z) && (b1.y == b2.y) && (b1.x == b2.x)) nz = true;
+			}
+			//check if outside the array, in which case it shouldnt be activated
+			/*if ((b1.x + 1) == chunkSize) px = 0;
+			if (b1.x == 0) nx = 0;
+			if ((b1.y + 1) == chunkSize) py = 0;
+			if (b1.y == 0) ny = 0;
+			if ((b1.z + 1) == chunkSize) pz = 0;
+			if (b1.z == 0) nz = 0;*/
 
-			
 		}
+
+		if (px && py && pz && nx && ny && nz) blocks[i].isVisible = false;
+		
 	}
 }
 
-void Chunk::buildMesh()
+
+//mesh stuff you fucked up
+/*void Chunk::buildMesh()
 {
 	//loop thru the blocks n build da mesh
 	for (int i = 0; i < blocks.size(); i++) {
@@ -126,11 +146,11 @@ void Chunk::loadMesh(Shader shader)
 	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), &vertices.front(), GL_STATIC_DRAW);
 
 	// position attribute
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
 	glEnableVertexAttribArray(0);
 	// texture coord attribute
 
-	/*glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
+	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
 	glEnableVertexAttribArray(1);
 
 	//load the motherfucking texture
@@ -155,5 +175,5 @@ void Chunk::loadMesh(Shader shader)
 	}
 	
 	shader.use();
-	shader.setInt("texture0", 0);*/
-}
+	shader.setInt("texture0", 0);
+}*/

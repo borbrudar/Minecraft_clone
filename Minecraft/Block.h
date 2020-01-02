@@ -30,6 +30,7 @@ public:
 	void act(Shader shader);
 public:
 	bool isVisible = true;
+	int x, y, z;
 private:
 	//vertex and buffer object
 	unsigned int VAO, VBO;

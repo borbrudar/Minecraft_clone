@@ -44,13 +44,12 @@ void Block::loadBlock(Shader shader, Block_Heavy& data)
 
 void Block::draw(Shader shader)
 {
-
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, texture0);
 	shader.use();
 	// render box
 	glBindVertexArray(VAO);
-	glDrawArrays(GL_TRIANGLES, 0, 500);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
 }
 
 void Block::act(Shader shader)

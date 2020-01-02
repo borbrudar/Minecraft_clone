@@ -15,7 +15,7 @@ public:
 //functions
 	void loadChunk(Shader shader, int &chunkNumber, int chunkMult, int chunkSize, Block_Heavy& data);
 	void drawChunk(Shader shader, int chunkSize);
-	void hideBlocks();
+	void hideBlocks(int chunkSize);
 //variables
 	std::vector<Block> blocks;
 	int chunkNumber;
@@ -24,7 +24,7 @@ public:
 	std::vector<int> heights;
 
 //chunk mesh
-	std::vector<glm::vec3> vertices;
+	/*std::vector<glm::vec3> vertices;
 	void buildMesh();
 	void loadMesh(Shader shader);
 	Texture texture;
@@ -89,5 +89,5 @@ glm::vec3(-0.5f,0.5f,-0.5f),
 
 	};
 
-	unsigned int VAO, VBO, texture0;
+	unsigned int VAO, VBO, texture0;*/
 };
