@@ -1,17 +1,15 @@
 #pragma once
-#include <vector>
-#include "Block.h"
-#include "Texture.h"
-
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
+
+#include "Block.h"
+
 #include <math.h>
+#include <vector>
 
 class Chunk {
 public:
-//constructors
-	Chunk() = default;
 //functions
 	void loadChunk(Shader shader, int &chunkNumber, int chunkMult, int chunkSize);
 	void drawChunk(Shader shader, int chunkSize, Block_Heavy &data);

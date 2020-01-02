@@ -10,8 +10,6 @@
 #include "Model.h"
 #include "World.h"
 
-
-#include <stb_image.h>
 #include <iostream>
 
 //function prototypes

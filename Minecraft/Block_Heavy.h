@@ -1,8 +1,4 @@
 #pragma once
-#include "Texture.h"
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtc/type_ptr.hpp>
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
@@ -12,8 +8,11 @@
 
 class Block_Heavy {
 public:
-	Texture texture;
+//functions
+	//loads up the texture to vao
 	void loadBlock(Shader shader);
+//variables
+	//cube vertices
 	float vertices[180] = {
 	   -0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
 		0.5f, -0.5f, -0.5f,  1.0f, 0.0f,
@@ -57,8 +56,8 @@ public:
 	   -0.5f,  0.5f,  0.5f,  0.0f, 0.0f,
 	   -0.5f,  0.5f, -0.5f,  0.0f, 1.0f
 	};
-	//vertex and buffer object
-	unsigned int VAO, VBO;
-	//textures
-	unsigned int texture0;
+	//default texture load up
+	Texture texture;
+	//vertex and buffer object; texture
+	unsigned int VAO, VBO, texture0;
 };

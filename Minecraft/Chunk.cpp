@@ -2,12 +2,13 @@
 
 void Chunk::loadChunk(Shader shader, int & chunkNumber, int chunkMult, int chunkSize)
 { 
-	
+	//helper variables
 	int chunkVolume = chunkSize * chunkSize * chunkSize;
 	int chunkArea = chunkSize * chunkSize;
-	//initialize blocks
+	//resize the block vector
 	blocks.resize(chunkVolume);
-	//set if visible
+
+	//set visibility
 	for (int x = 0; x < chunkSize; x++) {
 		for (int y = 0; y < chunkSize; y++) {
 			for (int z = 0; z < chunkSize; z++) {
@@ -16,22 +17,21 @@ void Chunk::loadChunk(Shader shader, int & chunkNumber, int chunkMult, int chunk
 					blocks[x + chunkSize * (y + (z * chunkSize))].x = x + (modelX * chunkSize);
 					blocks[x + chunkSize * (y + (z * chunkSize))].y = y + modelY;
 					blocks[x + chunkSize * (y + (z * chunkSize))].z = z + (modelZ * chunkSize);
-				}
-				else {
-					blocks[x + chunkSize * (y + (chunkSize * z))].isVisible = false;
-				}
+				} else blocks[x + chunkSize * (y + (chunkSize * z))].isVisible = false;	
 			}
-
 		}
 	}
 
+	//hide blocks 
 	hideBlocks(chunkSize);
-	model = glm::mat4(1.f);
 
-	//initialize the model matrix multipliers (different for each chunk)
+	//initialize the model matrix and matrix multipliers
+	model = glm::mat4(1.f);
 	modelX = (int)(chunkNumber % chunkMult);
 	modelZ = floor(chunkNumber / chunkMult);
 	modelY = -chunkSize;
+
+	//set some variables
 	this->chunkNumber = chunkNumber;
 	chunkNumber++;
 }
@@ -45,7 +45,7 @@ void Chunk::drawChunk(Shader shader, int chunkSize, Block_Heavy &data)
 	//flatten 3d array into 1d with:
 	//flat[x + width * (y + depth * z)]
 
-	//draw all them blocks
+	//draw all them visible blocks
 	for (int x = 0; x < chunkSize; x++) {
 		for (int y = 0; y < chunkSize; y++) {
 			for (int z = 0; z < chunkSize; z++) {
@@ -65,14 +65,18 @@ void Chunk::drawChunk(Shader shader, int chunkSize, Block_Heavy &data)
 	
 }
 
+//hides unnecessary blocks
 void Chunk::hideBlocks(int chunkSize)
 {
-	//hide unnecessary blocks
+
+	//checks surrounding blocks, if there's one in every directions, this block becomes invisible
 	for (unsigned int i = 0; i < blocks.size(); i++) {
+		//block 1 and variables for each direction
 		Block b1 = blocks[i];
-		//check in every direction
 		bool px = false, py = false, pz = false, nx = false, ny = false, nz = false;
+
 		for (unsigned int j = 0; j < blocks.size(); j++) {
+			//check
 			Block b2 = blocks[j];
 			if (b2.isVisible) {
 				if ((b1.x + 1 == b2.x) && (b1.y == b2.y) && (b1.z == b2.z)) px = true;
@@ -85,8 +89,7 @@ void Chunk::hideBlocks(int chunkSize)
 			
 
 		}
-
+		//set visibility
 		if (px && py && pz && nx && ny && nz) blocks[i].isVisible = false;
-		
 	}
 }

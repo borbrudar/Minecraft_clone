@@ -5,40 +5,26 @@
 
 class World {
 public:
-	//constructors
-	World(int numberOfChunks, Shader shader) : numberOfChunks(numberOfChunks) {
-		//utility
-		chunks.resize(numberOfChunks);
-		chunkMult = (int)sqrt(chunkSize);
-		//load the texture(s)
-		megaBlock.loadBlock(shader);
-
-		//generate the height map
-		generateHeightMap();
-
-		//load da chunks
-		for (unsigned int i = 0; i < chunks.size(); i++) chunks[i].loadChunk(shader, chunkNumber, chunkMult, chunkSize);
-
-		std::default_random_engine engine;
-		std::uniform_real_distribution<float> dist(0.01f, 0.1f);
-		add = dist(engine);
-
-		
-	};
-	//functions
+//constructors
+	World(int numberOfChunks, Shader shader);
+//functions
+	//draws the world
 	void drawWorld(Shader shader);
 private:
+	//needed at startup
 	void loadChunks(Shader shader);
 	void generateHeightMap();
 	float map(float x, float start1, float stop1, float start2, float stop2);
 //variables
-public:
-	std::vector<Chunk> chunks;
-	int numberOfChunks, chunkNumber = 0, chunkMult;
-	int chunkSize = 8, chunkArea = chunkSize * chunkSize, chunkVolume = chunkArea * chunkSize;
-	Block_Heavy megaBlock;
 private:
+	//vector of chunks and heavy block - holds the intrinsic state of the blocks
+	std::vector<Chunk> chunks;
+	Block_Heavy megaBlock;
+	//variables for perlin noise
 	std::vector<int> heights;
 	siv::PerlinNoise noiseMap;
-	float add;
+	float add = 0.05f;
+	//utuility variables
+	int numberOfChunks, chunkNumber = 0, chunkMult;
+	int chunkSize = 8, chunkArea = chunkSize * chunkSize, chunkVolume = chunkArea * chunkSize;
 };
