@@ -32,7 +32,7 @@ public:
 	block_type type = block_type::dirt;
 	//other shit idc tbh
 	glm::mat4 model = glm::mat4(1.f);
-	int posX, posY, posZ;
+	int x, y, z;
 private:
 	//vertex and buffer object
 	unsigned int VAO, VBO;

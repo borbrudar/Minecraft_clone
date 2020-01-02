@@ -2,7 +2,6 @@
 
 void Block::loadBlock(Shader shader, Block_Heavy& data)
 {
-	
 	//bind array objects and shit
 	glGenVertexArrays(1, &VAO);
 	glGenBuffers(1, &VBO);
@@ -51,7 +50,7 @@ void Block::draw(Shader shader)
 	shader.use();
 	// render box
 	glBindVertexArray(VAO);
-	glDrawArrays(GL_TRIANGLES, 0, 36);
+	glDrawArrays(GL_TRIANGLES, 0, 500);
 }
 
 void Block::act(Shader shader)

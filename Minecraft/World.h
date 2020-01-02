@@ -20,6 +20,7 @@ public:
 		std::uniform_real_distribution<float> dist(0.01f, 0.1f);
 		add = dist(engine);
 
+		
 	};
 	//functions
 	void drawWorld(Shader shader);
@@ -37,5 +38,4 @@ private:
 	std::vector<int> heights;
 	siv::PerlinNoise noiseMap;
 	float add;
-	
 };

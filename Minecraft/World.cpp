@@ -4,6 +4,7 @@ void World::drawWorld(Shader shader)
 {
 	//draw the fucking chunks
 	for (int i = 0; i < chunks.size(); i++) chunks[i].drawChunk(shader, chunkSize);
+
 }
 
 void World::loadChunks(Shader shader)

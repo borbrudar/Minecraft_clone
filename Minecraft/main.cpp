@@ -10,6 +10,7 @@
 #include "Model.h"
 #include "World.h"
 
+
 #include <stb_image.h>
 #include <iostream>
 
@@ -71,6 +72,7 @@ int main() {
 	glm::mat4 projection = glm::perspective(glm::radians(45.0f), (float)screenWidth / (float)screenHeight, 0.1f, 100.0f);
 		
 	World world(numberOfChunks, shaderProgram);
+	
 
 	//render loop 
 	while (!glfwWindowShouldClose(window)) {
