@@ -6,14 +6,20 @@ World::World(int numberOfChunks, Shader shader) : numberOfChunks(numberOfChunks)
 	chunks.resize(numberOfChunks);
 	chunkMult = (int)sqrt(numberOfChunks);
 
+	std::default_random_engine engine;
+	std::uniform_real_distribution<float> dist(0.1, 1);
+	add = dist(engine);
+
 	//load the texture(s)
 	megaBlock.loadBlock(shader);
+
+	//load da chunks 
+	for (unsigned int i = 0; i < chunks.size(); i++) chunks[i].loadChunk(shader, chunkNumber, chunkMult, chunkSize);
 
 	//generate the height map 
 	generateHeightMap();
 
-	//load da chunks and set visibility
-	for (unsigned int i = 0; i < chunks.size(); i++) chunks[i].loadChunk(shader, chunkNumber, chunkMult, chunkSize);
+	//set visibily
 	for (unsigned int i = 0; i < chunks.size(); i++) chunks[i].setVisible(chunkSize);
 	
 }
@@ -41,22 +47,18 @@ void World::generateHeightMap()
 	//generate the map
 	for (int x = 0; x < (chunkSize * chunkMult); x++) {
 		for (int y = 0; y < (chunkSize * chunkMult); y++) {
-			int temp = floor(map(abs(noiseMap.noise(x + add, y + add, 0.0)), 0, 0.8, (chunkSize / 4) * 3 - 1, chunkSize ));
+			int temp = floor(map(abs(noiseMap.noise(x + add, y + add, 0.0)), 0, 1, (chunkSize / 4) * 3 - 1, chunkSize ));
 			heights[x + (y * chunkSize * chunkMult)] = temp;
-
-			std::default_random_engine engine;
-			std::uniform_real_distribution<float> dist(0.01f, 0.5f);
-			add += dist(engine);
 		}
 	}
-	//pass the map to every chunk - BROKEN FOR SOME REASON
+	//pass the map to every chunk
 	for (int i = 0; i < chunks.size(); i++) {
 		chunks[i].heights.resize(chunkArea);
 			for (int x = 0; x < chunkSize; x++) {
-				for (int y = 0; y < chunkSize; y++) {
+				for (int z = 0; z < chunkSize; z++) {
 					float temp_x = chunkSize * chunks[i].modelX + x;
-					float temp_y = chunkSize * chunks[i].modelZ + y;
-					chunks[i].heights[temp_x + temp_y] = heights[x + (y * chunkSize)];
+					float temp_z = chunkSize * chunks[i].modelZ + z;
+					chunks[i].heights[x + (z * chunkSize)] = heights[temp_x + temp_z];
 				}
 			}
 	}

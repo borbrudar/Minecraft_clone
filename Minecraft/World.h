@@ -23,7 +23,7 @@ private:
 	//variables for perlin noise
 	std::vector<int> heights;
 	siv::PerlinNoise noiseMap;
-	float add = 0.05f;
+	float add;
 	//utuility variables
 	int numberOfChunks, chunkNumber = 0, chunkMult;
 	int chunkSize = 8, chunkArea = chunkSize * chunkSize, chunkVolume = chunkArea * chunkSize;
