@@ -5,10 +5,18 @@
 #include "Shader.h"
 #include "Texture.h"
 #include <vector>
+#include <string>
 
 class Block_Heavy {
 public:
 //functions
+	Block_Heavy() {
+		std::vector<std::string> textures;
+		textures.push_back("textures/grass.jpg");
+		textures.push_back("textures/stone.jpg");
+
+		tex.loadTexture(textures);
+	}
 	//loads up the texture to vao
 	void loadBlock(Shader shader);
 //variables
@@ -56,8 +64,8 @@ public:
 	   -0.5f,  0.5f,  0.5f,  0.0f, 0.0f,
 	   -0.5f,  0.5f, -0.5f,  0.0f, 1.0f
 	};
-	//default texture load up
-	Texture texture;
+	// textures load up
+	Texture tex;
 	//vertex and buffer object; texture
-	unsigned int VAO, VBO, texture0;
+	unsigned int VAO, VBO, texture[2];
 };

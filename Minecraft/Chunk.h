@@ -7,6 +7,7 @@
 
 #include <math.h>
 #include <vector>
+#include <random>
 
 class Chunk {
 public:

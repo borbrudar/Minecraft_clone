@@ -17,6 +17,19 @@ void Chunk::loadChunk(Shader shader, int & chunkNumber, int chunkMult, int chunk
 	//set some variables
 	this->chunkNumber = chunkNumber;
 	chunkNumber++;
+
+	//choose random block type
+	std::random_device rd;
+	std::default_random_engine engine(rd());
+	std::uniform_int_distribution<int> dist(0, 1);
+
+	for (int x = 0; x < chunkSize; x++) {
+		for (int y = 0; y < chunkSize; y++) {
+			for (int z = 0; z < chunkSize; z++) {
+				blocks[x + chunkSize * (y + (z * chunkSize))].type = (block_type::type) (dist(engine));
+			}
+		}
+	}
 }
 
 void Chunk::drawChunk(Shader shader, int chunkSize, Block_Heavy &data)
@@ -44,8 +57,6 @@ void Chunk::drawChunk(Shader shader, int chunkSize, Block_Heavy &data)
 			}
 		}
 	}
-	
-	
 }
 
 //hides unnecessary blocks

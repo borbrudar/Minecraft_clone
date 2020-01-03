@@ -3,7 +3,7 @@
 void Block::draw(Shader shader, Block_Heavy &data)
 {
 	glActiveTexture(GL_TEXTURE0);
-	glBindTexture(GL_TEXTURE_2D, data.texture0);
+	glBindTexture(GL_TEXTURE_2D, data.texture[(int)type]);
 	shader.use();
 	// render box
 	glBindVertexArray(data.VAO);

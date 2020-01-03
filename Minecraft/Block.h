@@ -6,9 +6,12 @@
 #include "Block_Heavy.h"
 
 
-enum class block_type {
-	air,
-	dirt
+class block_type {
+public:
+	enum class type {
+		dirt,
+		stone
+	};
 };
 
 class Block {
@@ -20,5 +23,5 @@ public:
 	bool isVisible = true;
 	int x, y, z;
 	//block type
-	block_type type = block_type::dirt;
+	block_type::type type = block_type::type::stone;
 };
