@@ -10,7 +10,8 @@ class block_type {
 public:
 	enum class type {
 		dirt,
-		stone
+		stone,
+		tree
 	};
 };
 
@@ -23,5 +24,5 @@ public:
 	bool isVisible = true;
 	int x, y, z;
 	//block type
-	block_type::type type = block_type::type::stone;
+	block_type::type type = block_type::type::tree;
 };

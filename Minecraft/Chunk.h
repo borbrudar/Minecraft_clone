@@ -4,6 +4,7 @@
 #include <glm/gtc/type_ptr.hpp>
 
 #include "Block.h"
+#include "Tree.h"
 
 #include <math.h>
 #include <vector>
@@ -22,4 +23,5 @@ public:
 	glm::mat4 model;
 	int modelX = 0, modelZ = 0, modelY = 0;
 	std::vector<int> heights;
+	std::vector<Tree> trees;
 };

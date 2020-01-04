@@ -18,7 +18,7 @@ void Block_Heavy::loadBlock(Shader shader)
 		glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
 		glEnableVertexAttribArray(1);
 
-		for (unsigned int i = 0; i < 2; i++) {
+		for (unsigned int i = 0; i < 3; i++) {
 		//load the motherfucking texture
 		// ---------
 		glGenTextures(1, &texture[i]);
@@ -41,6 +41,6 @@ void Block_Heavy::loadBlock(Shader shader)
 		}
 
 		shader.use();
-		shader.setInt("texture" + i, 0);
+		shader.setInt("texture0" , 0);
 	}
 }

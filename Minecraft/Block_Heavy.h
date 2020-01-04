@@ -14,6 +14,7 @@ public:
 		std::vector<std::string> textures;
 		textures.push_back("textures/grass.jpg");
 		textures.push_back("textures/stone.jpg");
+		textures.push_back("textures/tree.jpg");
 
 		tex.loadTexture(textures);
 	}
@@ -67,5 +68,5 @@ public:
 	// textures load up
 	Texture tex;
 	//vertex and buffer object; texture
-	unsigned int VAO, VBO, texture[2];
+	unsigned int VAO, VBO, texture[3];
 };

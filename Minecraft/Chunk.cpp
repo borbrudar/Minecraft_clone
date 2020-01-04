@@ -18,7 +18,7 @@ void Chunk::loadChunk(Shader shader, int & chunkNumber, int chunkMult, int chunk
 	this->chunkNumber = chunkNumber;
 	chunkNumber++;
 
-	//choose random block type
+	//choose random block type for the surface
 	std::random_device rd;
 	std::default_random_engine engine(rd());
 	std::uniform_int_distribution<int> dist(0, 1);
@@ -30,6 +30,7 @@ void Chunk::loadChunk(Shader shader, int & chunkNumber, int chunkMult, int chunk
 			}
 		}
 	}
+
 }
 
 void Chunk::drawChunk(Shader shader, int chunkSize, Block_Heavy &data)
@@ -55,6 +56,16 @@ void Chunk::drawChunk(Shader shader, int chunkSize, Block_Heavy &data)
 					blocks[x + chunkSize * (y + (z * chunkSize))].draw(shader, data);
 				}
 			}
+		}
+	}
+	for (int i = 0; i < trees.size(); i++) {
+		for (int j = 0; j < trees[i].trunk.size(); j++) {
+			model[3][0] = trees[i].trunk[j].x;
+			model[3][1] = trees[i].trunk[j].y;
+			model[3][2] = trees[i].trunk[j].z;
+			shader.setMat4("model", model);
+
+			trees[i].trunk[j].draw(shader, data);
 		}
 	}
 }
@@ -102,7 +113,22 @@ void Chunk::setVisible(int chunkSize)
 			}
 		}
 	}
+	
 
+	//load the tree positions
+	std::random_device rd;
+	std::default_random_engine engine(rd());
+	std::uniform_int_distribution<int> pos(0, chunkSize - 1);
+	trees.resize(5);
+
+	for (int i = 0; i < trees.size(); i++) {
+		int x = pos(engine), z = pos(engine);
+		for (int j = 0; j < trees[i].trunk.size(); j++) {
+			trees[i].trunk[j].x = x + (modelX * chunkSize);
+			trees[i].trunk[j].z = z + (modelZ * chunkSize);
+			trees[i].trunk[j].y = j - (chunkSize - heights[x + (z * chunkSize)]);
+		}
+	}
 	//hide blocks (it does nothing for now)
 	//hideBlocks(chunkSize);
 }

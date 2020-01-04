@@ -60,6 +60,9 @@
     <ClInclude Include="Texture.h">
       <Filter>Header files</Filter>
     </ClInclude>
+    <ClInclude Include="Tree.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header files">
@@ -77,5 +80,16 @@
     <Filter Include="Utility_c">
       <UniqueIdentifier>{49c58fac-6cc2-4b3c-af06-4dfb4d3e3770}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Shaders">
+      <UniqueIdentifier>{1dc92b7e-1513-4afb-a8c0-3120398fdb1b}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="shaders\fragementShader.fs">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="shaders\vertexShader.vs">
+      <Filter>Shaders</Filter>
+    </None>
   </ItemGroup>
 </Project>
