@@ -139,7 +139,7 @@ void Chunk::setTrees(int chunkSize)
 	std::random_device rd;
 	std::default_random_engine engine(rd());
 	std::uniform_int_distribution<int> pos(0, chunkSize - 1);
-	trees.resize(5);
+	trees.resize(3);
 
 	for (int i = 0; i < trees.size(); i++) {
 		int x = pos(engine), z = pos(engine);
