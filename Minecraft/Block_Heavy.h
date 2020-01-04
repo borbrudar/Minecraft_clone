@@ -15,8 +15,11 @@ public:
 		textures.push_back("textures/grass.jpg");
 		textures.push_back("textures/stone.jpg");
 		textures.push_back("textures/tree.jpg");
+		textures.push_back("textures/leaf.jpg");
 
 		tex.loadTexture(textures);
+
+		texture.resize(4);
 	}
 	//loads up the texture to vao
 	void loadBlock(Shader shader);
@@ -67,6 +70,7 @@ public:
 	};
 	// textures load up
 	Texture tex;
-	//vertex and buffer object; texture
-	unsigned int VAO, VBO, texture[3];
+	//vertex and buffer object; texture (change also in texture.h)
+	unsigned int VAO, VBO;
+	std::vector<unsigned int> texture;
 };

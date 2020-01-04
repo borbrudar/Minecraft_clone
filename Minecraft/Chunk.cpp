@@ -58,14 +58,29 @@ void Chunk::drawChunk(Shader shader, int chunkSize, Block_Heavy &data)
 			}
 		}
 	}
+
+	//draw the tree - IMPROVE THIS SHIT
 	for (int i = 0; i < trees.size(); i++) {
 		for (int j = 0; j < trees[i].trunk.size(); j++) {
-			model[3][0] = trees[i].trunk[j].x;
-			model[3][1] = trees[i].trunk[j].y;
-			model[3][2] = trees[i].trunk[j].z;
+			int x = trees[i].trunk[j].x, y = trees[i].trunk[j].y, z = trees[i].trunk[j].z;
+			model[3][0] = x;
+			model[3][1] = y;
+			model[3][2] = z;
 			shader.setMat4("model", model);
 
 			trees[i].trunk[j].draw(shader, data);
+
+			if (j == (trees[i].trunk.size() - 1)) {
+				trees[i].setTreeTop(x, y, z);
+				for (int k = 0; k < trees[i].treeTop.size(); k++) {
+					model[3][0] = trees[i].treeTop[k].x;
+					model[3][1] = trees[i].treeTop[k].y;
+					model[3][2] = trees[i].treeTop[k].z;
+					shader.setMat4("model", model);
+
+					trees[i].treeTop[k].draw(shader, data);
+				}
+			}
 		}
 	}
 }
@@ -113,8 +128,13 @@ void Chunk::setVisible(int chunkSize)
 			}
 		}
 	}
-	
 
+	//hide blocks (it does nothing for now)
+	//hideBlocks(chunkSize);
+}
+
+void Chunk::setTrees(int chunkSize)
+{
 	//load the tree positions
 	std::random_device rd;
 	std::default_random_engine engine(rd());
@@ -129,6 +149,4 @@ void Chunk::setVisible(int chunkSize)
 			trees[i].trunk[j].y = j - (chunkSize - heights[x + (z * chunkSize)]);
 		}
 	}
-	//hide blocks (it does nothing for now)
-	//hideBlocks(chunkSize);
 }

@@ -25,6 +25,9 @@
     <ClCompile Include="Block_Heavy.cpp">
       <Filter>Source files</Filter>
     </ClCompile>
+    <ClCompile Include="Tree.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Block.h">

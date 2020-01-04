@@ -17,6 +17,7 @@ public:
 	void drawChunk(Shader shader, int chunkSize, Block_Heavy &data);
 	void hideBlocks(int chunkSize);
 	void setVisible(int chunkSize);
+	void setTrees(int chunkSize);
 //variables
 	std::vector<Block> blocks;
 	int chunkNumber;

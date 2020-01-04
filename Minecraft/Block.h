@@ -11,7 +11,8 @@ public:
 	enum class type {
 		dirt,
 		stone,
-		tree
+		tree,
+		leaf
 	};
 };
 

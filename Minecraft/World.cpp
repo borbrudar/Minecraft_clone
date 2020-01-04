@@ -19,8 +19,11 @@ World::World(int numberOfChunks, Shader shader) : numberOfChunks(numberOfChunks)
 	//generate the height map 
 	generateHeightMap();
 
-	//set visibily
-	for (unsigned int i = 0; i < chunks.size(); i++) chunks[i].setVisible(chunkSize);
+	//set visibility and add trees
+	for (unsigned int i = 0; i < chunks.size(); i++) {
+		chunks[i].setVisible(chunkSize);
+		chunks[i].setTrees(chunkSize);
+	}
 	
 }
 
