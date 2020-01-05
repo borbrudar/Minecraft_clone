@@ -100,5 +100,5 @@ void Chunk::setVisible()
 
 void Chunk::loadBiome()
 {
-	biome->setBiomeData(chunkSize, modelX, modelZ, heights, blocks);
+	biome->setBiomeData(chunkSize, modelX, modelZ, modelY, heights, blocks);
 }

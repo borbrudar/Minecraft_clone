@@ -19,6 +19,8 @@ public:
 		textures.push_back("textures/sand.jpg");
 		textures.push_back("textures/cactus.jpg");
 		textures.push_back("textures/water.jpg");
+		textures.push_back("textures/snow.jpg");
+		textures.push_back("textures/ice.jpg");
 
 		tex.loadTexture(textures);
 

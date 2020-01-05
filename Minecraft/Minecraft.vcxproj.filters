@@ -31,6 +31,7 @@
     <ClCompile Include="Desert_Biome.cpp">
       <Filter>Source files</Filter>
     </ClCompile>
+    <ClCompile Include="Snow_Biome.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Block.h">
@@ -73,6 +74,9 @@
       <Filter>Header files</Filter>
     </ClInclude>
     <ClInclude Include="Desert_Biome.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="Snow_Biome.h">
       <Filter>Header files</Filter>
     </ClInclude>
   </ItemGroup>

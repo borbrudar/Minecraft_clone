@@ -15,7 +15,7 @@ void Desert_Biome::drawBiome(Shader shader, Block_Heavy & data, glm::mat4 model)
 	}
 }
 
-void Desert_Biome::setBiomeData(int chunkSize, int modelX, int modelZ, std::vector<int>& heights, std::vector<Block>& blocks)
+void Desert_Biome::setBiomeData(int chunkSize, int modelX, int modelZ,int modelY, std::vector<int>& heights, std::vector<Block>& blocks)
 {
 	//set the water blocks
 	int lowestBlock = 10000;
@@ -50,7 +50,7 @@ void Desert_Biome::setBiomeData(int chunkSize, int modelX, int modelZ, std::vect
 		for (int j = 0; j < cacti[i].trunk.size(); j++) {
 			cacti[i].trunk[j].x = x + (modelX * chunkSize);
 			cacti[i].trunk[j].z = z + (modelZ * chunkSize);
-			cacti[i].trunk[j].y = j - (chunkSize - heights[x + (z * chunkSize)]);
+			cacti[i].trunk[j].y = heights[x + (z * chunkSize)] + modelY + j;
 		}
 	}
 

@@ -28,7 +28,7 @@ void Forest_Biome::drawBiome(Shader shader, Block_Heavy & data, glm::mat4 model)
 	}
 }
 
-void Forest_Biome::setBiomeData(int chunkSize, int modelX, int modelZ, std::vector<int> &heights, std::vector<Block> &blocks)
+void Forest_Biome::setBiomeData(int chunkSize, int modelX, int modelZ, int modelY, std::vector<int> &heights, std::vector<Block> &blocks)
 {
 	//choose random block type for the surface
 	std::random_device rd;
@@ -52,7 +52,7 @@ void Forest_Biome::setBiomeData(int chunkSize, int modelX, int modelZ, std::vect
 		for (int j = 0; j < trees[i].trunk.size(); j++) {
 			trees[i].trunk[j].x = x + (modelX * chunkSize);
 			trees[i].trunk[j].z = z + (modelZ * chunkSize);
-			trees[i].trunk[j].y = j - (chunkSize - heights[x + (z * chunkSize)]);
+			trees[i].trunk[j].y = heights[x + (z * chunkSize)] + modelY + j;
 		}
 	}
 }

@@ -15,7 +15,9 @@ public:
 		leaf,
 		sand,
 		cactus, 
-		water
+		water, 
+		snow, 
+		ice
 	};
 };
 
