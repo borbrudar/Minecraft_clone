@@ -147,6 +147,7 @@
     <ClCompile Include="Block.cpp" />
     <ClCompile Include="Block_Heavy.cpp" />
     <ClCompile Include="Chunk.cpp" />
+    <ClCompile Include="Forest_Biome.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Model.cpp" />
     <ClCompile Include="stb_image.cpp" />
@@ -156,10 +157,12 @@
   <ItemGroup>
     <ClInclude Include="..\..\..\..\Desktop\PerlinNoise-master\PerlinNoise.hpp" />
     <ClInclude Include="..\res\include\stb_image.h" />
+    <ClInclude Include="Biome.h" />
     <ClInclude Include="Block.h" />
     <ClInclude Include="Block_Heavy.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Chunk.h" />
+    <ClInclude Include="Forest_Biome.h" />
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="Model.h" />
     <ClInclude Include="Shader.h" />

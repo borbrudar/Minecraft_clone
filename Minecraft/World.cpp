@@ -7,7 +7,7 @@ World::World(int numberOfChunks, Shader shader) : numberOfChunks(numberOfChunks)
 	chunkMult = (int)sqrt(numberOfChunks);
 
 	std::default_random_engine engine;
-	std::uniform_real_distribution<float> dist(0.1, 1);
+	std::uniform_real_distribution<float> dist(0.01, 0.1);
 	add = dist(engine);
 
 	//load the texture(s)
@@ -21,8 +21,8 @@ World::World(int numberOfChunks, Shader shader) : numberOfChunks(numberOfChunks)
 
 	//set visibility and add trees
 	for (unsigned int i = 0; i < chunks.size(); i++) {
-		chunks[i].setVisible(chunkSize);
-		chunks[i].setTrees(chunkSize);
+		chunks[i].setVisible();
+		//set trees visible
 	}
 	
 }
@@ -30,7 +30,7 @@ World::World(int numberOfChunks, Shader shader) : numberOfChunks(numberOfChunks)
 void World::drawWorld(Shader shader)
 {
 	//draw the fucking chunks
-	for (unsigned int i = 0; i < chunks.size(); i++) chunks[i].drawChunk(shader, chunkSize, megaBlock);
+	for (unsigned int i = 0; i < chunks.size(); i++) chunks[i].drawChunk(shader, megaBlock);
 
 }
 
@@ -50,7 +50,7 @@ void World::generateHeightMap()
 	//generate the map
 	for (int x = 0; x < (chunkSize * chunkMult); x++) {
 		for (int y = 0; y < (chunkSize * chunkMult); y++) {
-			int temp = floor(map(abs(noiseMap.noise(x + add, y + add, 0.0)), 0, 1, (chunkSize / 4) * 3 - 1, chunkSize ));
+			int temp = floor(map(abs(noiseMap.noise(x + add, y + add, 0.0)), 0, 1, chunkSize / 4, chunkSize ));
 			heights[x + (y * chunkSize * chunkMult)] = temp;
 		}
 	}

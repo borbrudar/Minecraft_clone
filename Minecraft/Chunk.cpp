@@ -15,25 +15,13 @@ void Chunk::loadChunk(Shader shader, int & chunkNumber, int chunkMult, int chunk
 	modelY = -chunkSize;
 
 	//set some variables
+	this->chunkSize = chunkSize;
 	this->chunkNumber = chunkNumber;
 	chunkNumber++;
 
-	//choose random block type for the surface
-	std::random_device rd;
-	std::default_random_engine engine(rd());
-	std::uniform_int_distribution<int> dist(0, 1);
-
-	for (int x = 0; x < chunkSize; x++) {
-		for (int y = 0; y < chunkSize; y++) {
-			for (int z = 0; z < chunkSize; z++) {
-				blocks[x + chunkSize * (y + (z * chunkSize))].type = (block_type::type) (dist(engine));
-			}
-		}
-	}
-
 }
 
-void Chunk::drawChunk(Shader shader, int chunkSize, Block_Heavy &data)
+void Chunk::drawChunk(Shader shader, Block_Heavy &data)
 {
 
 	//a guide for transformin them blocks
@@ -59,34 +47,11 @@ void Chunk::drawChunk(Shader shader, int chunkSize, Block_Heavy &data)
 		}
 	}
 
-	//draw the tree - IMPROVE THIS SHIT
-	for (int i = 0; i < trees.size(); i++) {
-		for (int j = 0; j < trees[i].trunk.size(); j++) {
-			int x = trees[i].trunk[j].x, y = trees[i].trunk[j].y, z = trees[i].trunk[j].z;
-			model[3][0] = x;
-			model[3][1] = y;
-			model[3][2] = z;
-			shader.setMat4("model", model);
-
-			trees[i].trunk[j].draw(shader, data);
-
-			if (j == (trees[i].trunk.size() - 1)) {
-				trees[i].setTreeTop(x, y, z);
-				for (int k = 0; k < trees[i].treeTop.size(); k++) {
-					model[3][0] = trees[i].treeTop[k].x;
-					model[3][1] = trees[i].treeTop[k].y;
-					model[3][2] = trees[i].treeTop[k].z;
-					shader.setMat4("model", model);
-
-					trees[i].treeTop[k].draw(shader, data);
-				}
-			}
-		}
-	}
+	biome->drawBiome(shader, data, model);
 }
 
 //hides unnecessary blocks
-void Chunk::hideBlocks(int chunkSize)
+void Chunk::hideBlocks()
 {
 
 	//checks surrounding blocks, if there's one in every directions, this block becomes invisible
@@ -112,7 +77,7 @@ void Chunk::hideBlocks(int chunkSize)
 	}
 }
 
-void Chunk::setVisible(int chunkSize)
+void Chunk::setVisible()
 {
 	//set visibility according to height
 	for (int x = 0; x < chunkSize; x++) {
@@ -129,24 +94,7 @@ void Chunk::setVisible(int chunkSize)
 		}
 	}
 
+	biome->setBiomeData(chunkSize, modelX, modelZ, heights, blocks);
 	//hide blocks (it does nothing for now)
 	//hideBlocks(chunkSize);
-}
-
-void Chunk::setTrees(int chunkSize)
-{
-	//load the tree positions
-	std::random_device rd;
-	std::default_random_engine engine(rd());
-	std::uniform_int_distribution<int> pos(0, chunkSize - 1);
-	trees.resize(3);
-
-	for (int i = 0; i < trees.size(); i++) {
-		int x = pos(engine), z = pos(engine);
-		for (int j = 0; j < trees[i].trunk.size(); j++) {
-			trees[i].trunk[j].x = x + (modelX * chunkSize);
-			trees[i].trunk[j].z = z + (modelZ * chunkSize);
-			trees[i].trunk[j].y = j - (chunkSize - heights[x + (z * chunkSize)]);
-		}
-	}
 }

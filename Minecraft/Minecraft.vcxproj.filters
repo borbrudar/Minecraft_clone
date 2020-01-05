@@ -28,6 +28,9 @@
     <ClCompile Include="Tree.cpp">
       <Filter>Source files</Filter>
     </ClCompile>
+    <ClCompile Include="Forest_Biome.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Block.h">
@@ -64,6 +67,12 @@
       <Filter>Header files</Filter>
     </ClInclude>
     <ClInclude Include="Tree.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="Biome.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="Forest_Biome.h">
       <Filter>Header files</Filter>
     </ClInclude>
   </ItemGroup>
