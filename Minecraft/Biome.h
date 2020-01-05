@@ -1,6 +1,7 @@
 #pragma once
 #include "Shader.h"
-#include"Block_Heavy.h"
+#include "Block_Heavy.h"
+#include "Block.h"
 
 class Biome {
 public:

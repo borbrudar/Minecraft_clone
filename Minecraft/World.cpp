@@ -19,12 +19,18 @@ World::World(int numberOfChunks, Shader shader) : numberOfChunks(numberOfChunks)
 	//generate the height map 
 	generateHeightMap();
 
-	//set visibility and add trees
-	for (unsigned int i = 0; i < chunks.size(); i++) {
-		chunks[i].setVisible();
-		//set trees visible
+	//set visibility and add trees/cacti
+	for (unsigned int i = 0; i < chunks.size(); i++) chunks[i].setVisible();
+
+	//set the biome
+	std::uniform_int_distribution<int> bio(0, 1);
+	for (int i = 0; i < chunks.size(); i++) {
+		int temp = bio(engine);
+		if (temp == 0) chunks[i].biome = std::make_unique<Forest_Biome>();
+		else if (temp == 1) chunks[i].biome = std::make_unique<Desert_Biome>();
+
+		chunks[i].loadBiome();
 	}
-	
 }
 
 void World::drawWorld(Shader shader)
@@ -47,11 +53,15 @@ void World::generateHeightMap()
 	int worldSize = chunkArea * numberOfChunks;
 	heights.resize(worldSize);
 	
+	std::default_random_engine engine;
+	std::uniform_real_distribution<float> dist(0.05, 0.15);
+	
 	//generate the map
 	for (int x = 0; x < (chunkSize * chunkMult); x++) {
 		for (int y = 0; y < (chunkSize * chunkMult); y++) {
 			int temp = floor(map(abs(noiseMap.noise(x + add, y + add, 0.0)), 0, 1, chunkSize / 4, chunkSize ));
 			heights[x + (y * chunkSize * chunkMult)] = temp;
+			add = dist(engine);
 		}
 	}
 	//pass the map to every chunk

@@ -16,10 +16,13 @@ public:
 		textures.push_back("textures/stone.jpg");
 		textures.push_back("textures/tree.jpg");
 		textures.push_back("textures/leaf.jpg");
+		textures.push_back("textures/sand.jpg");
+		textures.push_back("textures/cactus.jpg");
+		textures.push_back("textures/water.jpg");
 
 		tex.loadTexture(textures);
 
-		texture.resize(4);
+		texture.resize(textures.size());
 	}
 	//loads up the texture to vao
 	void loadBlock(Shader shader);

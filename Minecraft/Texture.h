@@ -3,7 +3,7 @@
 #include <string>
 #include <vector>
 
-const int size = 4;
+const int size = 7;
 
 class Texture {
 public:

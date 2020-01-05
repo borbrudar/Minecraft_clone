@@ -25,10 +25,10 @@
     <ClCompile Include="Block_Heavy.cpp">
       <Filter>Source files</Filter>
     </ClCompile>
-    <ClCompile Include="Tree.cpp">
+    <ClCompile Include="Forest_Biome.cpp">
       <Filter>Source files</Filter>
     </ClCompile>
-    <ClCompile Include="Forest_Biome.cpp">
+    <ClCompile Include="Desert_Biome.cpp">
       <Filter>Source files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -66,13 +66,13 @@
     <ClInclude Include="Texture.h">
       <Filter>Header files</Filter>
     </ClInclude>
-    <ClInclude Include="Tree.h">
-      <Filter>Header files</Filter>
-    </ClInclude>
     <ClInclude Include="Biome.h">
       <Filter>Header files</Filter>
     </ClInclude>
     <ClInclude Include="Forest_Biome.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="Desert_Biome.h">
       <Filter>Header files</Filter>
     </ClInclude>
   </ItemGroup>

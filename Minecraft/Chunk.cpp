@@ -94,7 +94,11 @@ void Chunk::setVisible()
 		}
 	}
 
-	biome->setBiomeData(chunkSize, modelX, modelZ, heights, blocks);
 	//hide blocks (it does nothing for now)
 	//hideBlocks(chunkSize);
+}
+
+void Chunk::loadBiome()
+{
+	biome->setBiomeData(chunkSize, modelX, modelZ, heights, blocks);
 }

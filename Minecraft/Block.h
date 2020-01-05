@@ -12,7 +12,10 @@ public:
 		dirt,
 		stone,
 		tree,
-		leaf
+		leaf,
+		sand,
+		cactus, 
+		water
 	};
 };
 

@@ -4,9 +4,9 @@
 #include <glm/gtc/type_ptr.hpp>
 
 #include "Block.h"
-#include "Tree.h"
 #include "Biome.h"
 #include "Forest_Biome.h"
+#include "Desert_Biome.h"
 
 #include <math.h>
 #include <vector>
@@ -19,6 +19,7 @@ public:
 	void drawChunk(Shader shader, Block_Heavy &data);
 	void hideBlocks();
 	void setVisible();
+	void loadBiome();
 //variables
 	std::vector<Block> blocks;
 	int chunkNumber, chunkSize;
