@@ -83,7 +83,7 @@ void Chunk::setVisible()
 	for (int x = 0; x < chunkSize; x++) {
 		for (int y = 0; y < chunkSize; y++) {
 			for (int z = 0; z < chunkSize; z++) {
-				if (heights[x + (z * chunkSize)] == y) {
+				if (heights[x + (z * chunkSize)] == y ) {
 					//position shit
 					blocks[x + chunkSize * (y + (z * chunkSize))].x = x + (modelX * chunkSize);
 					blocks[x + chunkSize * (y + (z * chunkSize))].y = y + modelY;
@@ -95,7 +95,7 @@ void Chunk::setVisible()
 	}
 
 	//hide blocks (it does nothing for now)
-	//hideBlocks(chunkSize);
+	//hideBlocks();
 }
 
 void Chunk::loadBiome()

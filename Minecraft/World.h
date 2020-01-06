@@ -26,5 +26,5 @@ private:
 	float add;
 	//utuility variables
 	int numberOfChunks, chunkNumber = 0, chunkMult;
-	int chunkSize = 8, chunkArea = chunkSize * chunkSize, chunkVolume = chunkArea * chunkSize;
+	int chunkSize = 10, chunkArea = chunkSize * chunkSize, chunkVolume = chunkArea * chunkSize;
 };

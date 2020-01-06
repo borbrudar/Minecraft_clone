@@ -31,7 +31,7 @@ float deltaTime = 0.0f;
 float lastFrame = 0.0f;
 
 //chunks (numberOfChunks is a perfect square)
-int numberOfChunks = 25;
+int numberOfChunks = 16;
 
 int main() {
 	//initialize the window

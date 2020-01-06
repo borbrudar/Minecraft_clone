@@ -31,7 +31,9 @@
     <ClCompile Include="Desert_Biome.cpp">
       <Filter>Source files</Filter>
     </ClCompile>
-    <ClCompile Include="Snow_Biome.cpp" />
+    <ClCompile Include="Snow_Biome.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Block.h">
