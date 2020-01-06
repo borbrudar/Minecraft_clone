@@ -73,6 +73,8 @@ int main() {
 	//projection matrix - model and view are elsewhere
 	glm::mat4 projection = glm::perspective(glm::radians(45.0f), (float)screenWidth / (float)screenHeight, 0.1f, 100.0f);
 
+	glm::vec3 lightPos = glm::vec3(15, 10, 15);
+	defShader.setVec3("lightPos", lightPos);
 
 	//render loop 
 	while (!glfwWindowShouldClose(window)) {
