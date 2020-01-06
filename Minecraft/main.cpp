@@ -73,9 +73,12 @@ int main() {
 	//projection matrix - model and view are elsewhere
 	glm::mat4 projection = glm::perspective(glm::radians(45.0f), (float)screenWidth / (float)screenHeight, 0.1f, 100.0f);
 
+	//diffuse lighting
 	glm::vec3 lightPos = glm::vec3(15, 10, 15);
 	defShader.setVec3("lightPos", lightPos);
 
+
+	bool day = true;
 	//render loop 
 	while (!glfwWindowShouldClose(window)) {
 		//calculate time
@@ -96,7 +99,14 @@ int main() {
 		//forward the view and projection matrices (they're intrinsic)
 		defShader.setMat4("view", view);
 		defShader.setMat4("projection", projection);	
+		//lighting
+		defShader.setVec3("viewPos", camera.Position);
+		defShader.setVec3("lightPos", lightPos);
 
+		lightPos.x = 18;
+		lightPos.z = abs(std::sin(glfwGetTime() / 8)) * 36; // * is number of blocks
+		lightPos.y = 50 * std::sin(glfwGetTime() / 4);      // / has to be 2x on z than y
+		
 		//draw the world
 		world.drawWorld(defShader);
 		
