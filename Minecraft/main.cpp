@@ -8,16 +8,20 @@
 #include "Shader.h"
 #include "Camera.h"
 #include "World.h"
+#include "State.h"
+#include "Menu.h"
 
 #include <iostream>
+#include <functional>
 
 //function prototypes
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void mouse_callback(GLFWwindow* window, double xpos, double ypos);
-void processInput(GLFWwindow *window);
+void processInput(GLFWwindow *window); 
+void mouse_button_callback(GLFWwindow* window, int button, int action, int mods);
+void updateGameState();
 
 //global variables
-
 //screensize
 const int screenWidth = 800, screenHeight = 600;
 //camera
@@ -33,12 +37,21 @@ float lastFrame = 0.0f;
 //chunks (numberOfChunks is a perfect square)
 int numberOfChunks = 16;
 
+enum class state {
+	game,
+	menu
+};
+
+state gameState = state::menu;
+bool swappedState = false, rightPosition = false;
+
 int main() {
 	//initialize the window
 	glfwInit();
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+
 
 	//initialize the window
 	GLFWwindow *window = glfwCreateWindow(screenWidth, screenHeight, "Minecraft", NULL, NULL);
@@ -48,10 +61,12 @@ int main() {
 		return -1;
 	}
 
+
 	//set callback functions
 	glfwMakeContextCurrent(window);
 	glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
 	glfwSetCursorPosCallback(window, mouse_callback);
+	glfwSetMouseButtonCallback(window, mouse_button_callback);
 
 	//initialize glad
 	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
@@ -61,15 +76,19 @@ int main() {
 
 	//some other opengl settings
 	glEnable(GL_DEPTH_TEST);
-	glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+	
+	if(gameState == state::game) glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+	else if (gameState == state::menu) glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
 	//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 	
 
 	//create a shaderprogram
 	Shader defShader("shaders/vertexShader.vs", "shaders/fragementShader.fs");
+	Shader menuShader("shaders/menV.vs", "shaders/menF.fs");
 	//create the minecraft world
-	World world(numberOfChunks, defShader);
-
+	std::unique_ptr<State> state;
+	if (gameState == state::game) state = std::make_unique<World>(numberOfChunks, defShader);
+	else state = std::make_unique<Menu>(menuShader);
 	//projection matrix - model and view are elsewhere
 	glm::mat4 projection = glm::perspective(glm::radians(45.0f), (float)screenWidth / (float)screenHeight, 0.1f, 100.0f);
 
@@ -81,13 +100,23 @@ int main() {
 	bool day = true;
 	//render loop 
 	while (!glfwWindowShouldClose(window)) {
+		//check the game state
+		if (swappedState) {
+			if (gameState == state::game) state = std::make_unique<World>(numberOfChunks, defShader);
+			else if (gameState == state::menu) state = std::make_unique<Menu>(menuShader);
+
+			if (gameState == state::game) glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+			else if (gameState == state::menu) glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+
+			swappedState = false;
+		}
 		//calculate time
 		float currentFrame = (float)glfwGetTime();
 		deltaTime = currentFrame - lastFrame;
 		lastFrame = currentFrame;
 
 		//process key input
-		processInput(window);
+		state->processInput(window, camera, deltaTime);
 		
 		//view matrix (updated every frame)
 		glm::mat4 view = camera.GetViewMatrix();
@@ -108,7 +137,8 @@ int main() {
 		lightPos.y = 50 * std::sin(glfwGetTime() / 4);      // / has to be 2x on z than y
 		
 		//draw the world
-		world.drawWorld(defShader);
+		if(gameState == state::game) state->draw(defShader);
+		else if(gameState == state::menu) state->draw(menuShader);
 		
 		//----------------------------------------------------------------------------------
 		glfwSwapBuffers(window);
@@ -143,6 +173,7 @@ void processInput(GLFWwindow *window)
 
 //process mouse input
 void mouse_callback(GLFWwindow* window, double xpos, double ypos) {
+	
 	if (firstMouse)
 	{
 		lastX = (float)xpos;
@@ -156,5 +187,14 @@ void mouse_callback(GLFWwindow* window, double xpos, double ypos) {
 	lastX = (float)xpos;
 	lastY = (float)ypos;
 
-	camera.ProcessMouseMovement(xoffset, yoffset);
+	if (gameState == state::game) camera.ProcessMouseMovement(xoffset, yoffset);
+	if (xpos > 211 && xpos < 586 && ypos > 271 && ypos < 316) rightPosition = true; else rightPosition = false;
+}
+
+void mouse_button_callback(GLFWwindow* window, int button, int action, int mods) {
+	if (gameState == state::menu && rightPosition && action == GLFW_PRESS) {
+		rightPosition = false;
+		gameState = state::game;
+		swappedState = true;
+	}
 }

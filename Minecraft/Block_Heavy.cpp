@@ -2,7 +2,6 @@
 
 void Block_Heavy::loadBlock(Shader shader)
 {
-	
 		//bind array objects and shit
 		glGenVertexArrays(1, &VAO);
 		glGenBuffers(1, &VBO);
@@ -44,6 +43,6 @@ void Block_Heavy::loadBlock(Shader shader)
 		}
 
 		shader.use();
-		shader.setInt("texture0" , 0);
+		shader.setInt("texture0", 0);
 	}
 }

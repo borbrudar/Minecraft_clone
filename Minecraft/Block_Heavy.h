@@ -22,7 +22,7 @@ public:
 		textures.push_back("textures/snow.jpg");
 		textures.push_back("textures/ice.jpg");
 
-		tex.loadTexture(textures);
+		tex.loadTexture(textures, textures.size());
 
 		texture.resize(textures.size());
 	}

@@ -1,15 +1,18 @@
 #pragma once
 #include "Chunk.h"
+#include "Camera.h"
+#include "State.h"
 #include <PerlinNoise.hpp>
 #include "Block_Heavy.h"
 
-class World {
+class World : public State{
 public:
 //constructors
 	World(int numberOfChunks, Shader shader);
 //functions
 	//draws the world
-	void drawWorld(Shader shader);
+	void draw(Shader shader);
+	void processInput(GLFWwindow *window, Camera &camera, float deltaTime);
 private:
 	//needed at startup
 	void loadChunks(Shader shader);

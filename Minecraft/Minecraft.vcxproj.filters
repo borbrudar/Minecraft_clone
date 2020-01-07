@@ -25,14 +25,17 @@
     <ClCompile Include="Block_Heavy.cpp">
       <Filter>Source files</Filter>
     </ClCompile>
-    <ClCompile Include="Forest_Biome.cpp">
+    <ClCompile Include="Menu.cpp">
       <Filter>Source files</Filter>
     </ClCompile>
     <ClCompile Include="Desert_Biome.cpp">
-      <Filter>Source files</Filter>
+      <Filter>BiomeC</Filter>
+    </ClCompile>
+    <ClCompile Include="Forest_Biome.cpp">
+      <Filter>BiomeC</Filter>
     </ClCompile>
     <ClCompile Include="Snow_Biome.cpp">
-      <Filter>Source files</Filter>
+      <Filter>BiomeC</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -69,17 +72,23 @@
     <ClInclude Include="Texture.h">
       <Filter>Header files</Filter>
     </ClInclude>
-    <ClInclude Include="Biome.h">
+    <ClInclude Include="State.h">
       <Filter>Header files</Filter>
     </ClInclude>
-    <ClInclude Include="Forest_Biome.h">
+    <ClInclude Include="Menu.h">
       <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="Biome.h">
+      <Filter>BiomeH</Filter>
     </ClInclude>
     <ClInclude Include="Desert_Biome.h">
-      <Filter>Header files</Filter>
+      <Filter>BiomeH</Filter>
+    </ClInclude>
+    <ClInclude Include="Forest_Biome.h">
+      <Filter>BiomeH</Filter>
     </ClInclude>
     <ClInclude Include="Snow_Biome.h">
-      <Filter>Header files</Filter>
+      <Filter>BiomeH</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -101,12 +110,24 @@
     <Filter Include="Shaders">
       <UniqueIdentifier>{1dc92b7e-1513-4afb-a8c0-3120398fdb1b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="BiomeH">
+      <UniqueIdentifier>{65080f53-8392-42a4-beca-6ebc76ec85be}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="BiomeC">
+      <UniqueIdentifier>{b07e58da-905f-4d19-a786-f2ce71493871}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="shaders\fragementShader.fs">
       <Filter>Shaders</Filter>
     </None>
     <None Include="shaders\vertexShader.vs">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="shaders\menF.fs">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="shaders\menV.vs">
       <Filter>Shaders</Filter>
     </None>
   </ItemGroup>
