@@ -1,7 +1,6 @@
 #include "Menu.h"
 
 void Menu::draw(Shader shader)
-
 {
 	for (int i = 0; i < tex.data.size(); i++) {
 		glActiveTexture(GL_TEXTURE0);

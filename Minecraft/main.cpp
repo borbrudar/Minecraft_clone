@@ -10,6 +10,7 @@
 #include "World.h"
 #include "State.h"
 #include "Menu.h"
+#include "Crosshair.h"
 
 #include <iostream>
 #include <functional>
@@ -19,8 +20,6 @@ void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void mouse_callback(GLFWwindow* window, double xpos, double ypos);
 void processInput(GLFWwindow *window); 
 void mouse_button_callback(GLFWwindow* window, int button, int action, int mods);
-void updateGameState();
-
 //global variables
 //screensize
 const int screenWidth = 800, screenHeight = 600;
@@ -95,9 +94,14 @@ int main() {
 	//diffuse lighting
 	glm::vec3 lightPos = glm::vec3(15, 10, 15);
 	defShader.setVec3("lightPos", lightPos);
-
-
+	
+	//day/night cycle
 	bool day = true;
+
+	//crosshair
+	Crosshair hair;
+	hair.loadCrosshair(menuShader);
+
 	//render loop 
 	while (!glfwWindowShouldClose(window)) {
 		//check the game state
@@ -135,10 +139,13 @@ int main() {
 		lightPos.x = 18;
 		lightPos.z = abs(std::sin(glfwGetTime() / 8)) * 36; // * is number of blocks
 		lightPos.y = 50 * std::sin(glfwGetTime() / 4);      // / has to be 2x on z than y
-		
+	
+		if (gameState == state::game) hair.drawCrosshair(menuShader);
 		//draw the world
-		if(gameState == state::game) state->draw(defShader);
+		if (gameState == state::game) state->draw(defShader); 
 		else if(gameState == state::menu) state->draw(menuShader);
+
+		
 		
 		//----------------------------------------------------------------------------------
 		glfwSwapBuffers(window);

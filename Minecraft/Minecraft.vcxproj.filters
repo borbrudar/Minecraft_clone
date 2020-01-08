@@ -1,12 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="Block.cpp">
-      <Filter>Source files</Filter>
-    </ClCompile>
-    <ClCompile Include="Chunk.cpp">
-      <Filter>Source files</Filter>
-    </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>Source files</Filter>
     </ClCompile>
@@ -16,14 +10,8 @@
     <ClCompile Include="stb_image.cpp">
       <Filter>Additional files</Filter>
     </ClCompile>
-    <ClCompile Include="World.cpp">
-      <Filter>Source files</Filter>
-    </ClCompile>
     <ClCompile Include="Model.cpp">
       <Filter>Utility_c</Filter>
-    </ClCompile>
-    <ClCompile Include="Block_Heavy.cpp">
-      <Filter>Source files</Filter>
     </ClCompile>
     <ClCompile Include="Menu.cpp">
       <Filter>Source files</Filter>
@@ -37,19 +25,25 @@
     <ClCompile Include="Snow_Biome.cpp">
       <Filter>BiomeC</Filter>
     </ClCompile>
+    <ClCompile Include="Crosshair.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="Chunk.cpp">
+      <Filter>WorldC</Filter>
+    </ClCompile>
+    <ClCompile Include="Block.cpp">
+      <Filter>WorldC</Filter>
+    </ClCompile>
+    <ClCompile Include="World.cpp">
+      <Filter>WorldC</Filter>
+    </ClCompile>
+    <ClCompile Include="Block_Heavy.cpp">
+      <Filter>WorldC</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Block.h">
-      <Filter>Header files</Filter>
-    </ClInclude>
-    <ClInclude Include="Chunk.h">
-      <Filter>Header files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\..\Desktop\PerlinNoise-master\PerlinNoise.hpp">
       <Filter>Additional files</Filter>
-    </ClInclude>
-    <ClInclude Include="World.h">
-      <Filter>Header files</Filter>
     </ClInclude>
     <ClInclude Include="..\res\include\stb_image.h">
       <Filter>Additional files</Filter>
@@ -65,9 +59,6 @@
     </ClInclude>
     <ClInclude Include="Shader.h">
       <Filter>Utility_h</Filter>
-    </ClInclude>
-    <ClInclude Include="Block_Heavy.h">
-      <Filter>Header files</Filter>
     </ClInclude>
     <ClInclude Include="Texture.h">
       <Filter>Header files</Filter>
@@ -89,6 +80,21 @@
     </ClInclude>
     <ClInclude Include="Snow_Biome.h">
       <Filter>BiomeH</Filter>
+    </ClInclude>
+    <ClInclude Include="Crosshair.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="World.h">
+      <Filter>WorldH</Filter>
+    </ClInclude>
+    <ClInclude Include="Block.h">
+      <Filter>WorldH</Filter>
+    </ClInclude>
+    <ClInclude Include="Chunk.h">
+      <Filter>WorldH</Filter>
+    </ClInclude>
+    <ClInclude Include="Block_Heavy.h">
+      <Filter>WorldH</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -115,6 +121,12 @@
     </Filter>
     <Filter Include="BiomeC">
       <UniqueIdentifier>{b07e58da-905f-4d19-a786-f2ce71493871}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="WorldH">
+      <UniqueIdentifier>{c9baa2fb-cbe7-4f13-91a6-47d0d1f2b653}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="WorldC">
+      <UniqueIdentifier>{e17b0405-2178-4cf1-a68c-58d52b6deb6c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

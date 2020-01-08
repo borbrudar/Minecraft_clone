@@ -32,13 +32,13 @@ World::World(int numberOfChunks, Shader shader) : numberOfChunks(numberOfChunks)
 
 		chunks[i].loadBiome();
 	}
+
 }
 
 void World::draw(Shader shader)
 {
 	//draw the fucking chunks
 	for (unsigned int i = 0; i < chunks.size(); i++) chunks[i].drawChunk(shader, megaBlock);
-
 }
 
 void World::processInput(GLFWwindow *window, Camera &camera, float deltaTime) {
@@ -93,6 +93,8 @@ void World::generateHeightMap()
 	}
 
 }
+
+
 
 float World::map(float x, float start1, float stop1, float start2, float stop2)
 {
