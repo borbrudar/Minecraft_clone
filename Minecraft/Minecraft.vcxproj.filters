@@ -40,6 +40,9 @@
     <ClCompile Include="Block_Heavy.cpp">
       <Filter>WorldC</Filter>
     </ClCompile>
+    <ClCompile Include="Taiga_Biome.cpp">
+      <Filter>BiomeC</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\Desktop\PerlinNoise-master\PerlinNoise.hpp">
@@ -95,6 +98,9 @@
     </ClInclude>
     <ClInclude Include="Block_Heavy.h">
       <Filter>WorldH</Filter>
+    </ClInclude>
+    <ClInclude Include="Taiga_Biome.h">
+      <Filter>BiomeH</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

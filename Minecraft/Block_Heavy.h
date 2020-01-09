@@ -21,6 +21,8 @@ public:
 		textures.push_back("textures/water.jpg");
 		textures.push_back("textures/snow.jpg");
 		textures.push_back("textures/ice.jpg");
+		textures.push_back("textures/taigawood.png");
+		textures.push_back("textures/taigaleaf.jpg");
 
 		tex.loadTexture(textures, textures.size());
 

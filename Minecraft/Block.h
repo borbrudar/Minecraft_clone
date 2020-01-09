@@ -17,7 +17,9 @@ public:
 		cactus, 
 		water, 
 		snow, 
-		ice
+		ice,
+		taigatree,
+		taigaleaf
 	};
 };
 

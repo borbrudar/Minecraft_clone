@@ -155,6 +155,7 @@
     <ClCompile Include="Model.cpp" />
     <ClCompile Include="Snow_Biome.cpp" />
     <ClCompile Include="stb_image.cpp" />
+    <ClCompile Include="Taiga_Biome.cpp" />
     <ClCompile Include="World.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -174,6 +175,7 @@
     <ClInclude Include="Shader.h" />
     <ClInclude Include="Snow_Biome.h" />
     <ClInclude Include="State.h" />
+    <ClInclude Include="Taiga_Biome.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="World.h" />
   </ItemGroup>
