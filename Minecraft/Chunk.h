@@ -9,6 +9,7 @@
 #include "Desert_Biome.h"
 #include "Snow_Biome.h"
 #include "Taiga_Biome.h"
+#include "Birch_Biome.h"
 
 #include <math.h>
 #include <vector>

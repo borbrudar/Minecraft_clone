@@ -94,6 +94,8 @@ int main() {
 	//diffuse lighting
 	glm::vec3 lightPos = glm::vec3(15, 10, 15);
 	defShader.setVec3("lightPos", lightPos);
+	glm::vec3 lightColor = glm::vec3(1, 1, 1);
+	defShader.setVec3("lightColor", lightColor);
 	
 	//day/night cycle
 	bool day = true;
@@ -136,10 +138,16 @@ int main() {
 		defShader.setVec3("viewPos", camera.Position);
 		defShader.setVec3("lightPos", lightPos);
 
+		//lighting--
 		lightPos.x = 18;
 		lightPos.z = abs(std::sin(glfwGetTime() / 8)) * 36; // * is number of blocks
 		lightPos.y = 50 * std::sin(glfwGetTime() / 4);      // / has to be 2x on z than y
-	
+
+		if (lightPos.y < -16) lightColor = glm::vec3(0, 0, 0);
+		else lightColor = glm::vec3(1, 1, 1);
+		defShader.setVec3("lightColor", lightColor);
+		//---
+
 		if (gameState == state::game) hair.drawCrosshair(menuShader);
 		//draw the world
 		if (gameState == state::game) state->draw(defShader); 

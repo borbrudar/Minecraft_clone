@@ -1,6 +1,6 @@
-#include "Taiga_Biome.h"
+#include "Birch_Biome.h"
 
-void Taiga_Biome::drawBiome(Shader shader, Block_Heavy & data, glm::mat4 model)
+void Birch_Biome::drawBiome(Shader shader, Block_Heavy & data, glm::mat4 model)
 {
 	//draw the trees
 	for (int i = 0; i < trees.size(); i++) {
@@ -28,26 +28,22 @@ void Taiga_Biome::drawBiome(Shader shader, Block_Heavy & data, glm::mat4 model)
 	}
 }
 
-void Taiga_Biome::setBiomeData(int chunkSize, int modelX, int modelZ, int modelY, std::vector<int>& heights, std::vector<Block>& blocks)
+void Birch_Biome::setBiomeData(int chunkSize, int modelX, int modelZ, int modelY, std::vector<int>& heights, std::vector<Block>& blocks)
 {
-	//dirt/stone for the surface
-	std::random_device rd;
-	std::default_random_engine engine(rd());
-	std::uniform_int_distribution<int> dist(0, 1);
-
+	//grass ground
 	for (int x = 0; x < chunkSize; x++) {
 		for (int y = 0; y < chunkSize; y++) {
 			for (int z = 0; z < chunkSize; z++) {
-				int temp = dist(engine);
-				if(temp == 0) blocks[x + chunkSize * (y + (z * chunkSize))].type = block_type::type::dirt;
-				if(temp == 1) blocks[x + chunkSize * (y + (z * chunkSize))].type = block_type::type::stone;
+				blocks[x + chunkSize * (y + (z * chunkSize))].type = block_type::type::grass;
 			}
 		}
 	}
 
 	//load the tree positions
+	std::random_device rd;
+	std::default_random_engine engine(rd());
 	std::uniform_int_distribution<int> pos(0, chunkSize - 1);
-	trees.resize(3);
+	trees.resize(4);
 
 	for (int i = 0; i < trees.size(); i++) {
 		int x = pos(engine), z = pos(engine);

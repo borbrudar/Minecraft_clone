@@ -23,13 +23,14 @@ World::World(int numberOfChunks, Shader shader) : numberOfChunks(numberOfChunks)
 	for (unsigned int i = 0; i < chunks.size(); i++) chunks[i].setVisible();
 
 	//set the biome
-	std::uniform_int_distribution<int> bio(0, 3);
+	std::uniform_int_distribution<int> bio(0, 4);
 	for (int i = 0; i < chunks.size(); i++) {
 		int temp = bio(engine);
 		if (temp == 0) chunks[i].biome = std::make_unique<Forest_Biome>();
 		else if (temp == 1) chunks[i].biome = std::make_unique<Desert_Biome>();
 		else if (temp == 2) chunks[i].biome = std::make_unique<Snow_Biome>();
 		else if (temp == 3) chunks[i].biome = std::make_unique<Taiga_Biome>();
+		else if (temp == 4) chunks[i].biome = std::make_unique<Birch_Biome>();
 
 		chunks[i].loadBiome();
 	}

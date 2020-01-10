@@ -17,13 +17,13 @@
       <Filter>Source files</Filter>
     </ClCompile>
     <ClCompile Include="Desert_Biome.cpp">
-      <Filter>BiomeC</Filter>
+      <Filter>WorldC\BiomeC</Filter>
     </ClCompile>
     <ClCompile Include="Forest_Biome.cpp">
-      <Filter>BiomeC</Filter>
+      <Filter>WorldC\BiomeC</Filter>
     </ClCompile>
     <ClCompile Include="Snow_Biome.cpp">
-      <Filter>BiomeC</Filter>
+      <Filter>WorldC\BiomeC</Filter>
     </ClCompile>
     <ClCompile Include="Crosshair.cpp">
       <Filter>Source files</Filter>
@@ -41,7 +41,10 @@
       <Filter>WorldC</Filter>
     </ClCompile>
     <ClCompile Include="Taiga_Biome.cpp">
-      <Filter>BiomeC</Filter>
+      <Filter>WorldC\BiomeC</Filter>
+    </ClCompile>
+    <ClCompile Include="Birch_Biome.cpp">
+      <Filter>WorldC\BiomeC</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -73,16 +76,16 @@
       <Filter>Header files</Filter>
     </ClInclude>
     <ClInclude Include="Biome.h">
-      <Filter>BiomeH</Filter>
+      <Filter>WorldH\BiomeH</Filter>
     </ClInclude>
     <ClInclude Include="Desert_Biome.h">
-      <Filter>BiomeH</Filter>
+      <Filter>WorldH\BiomeH</Filter>
     </ClInclude>
     <ClInclude Include="Forest_Biome.h">
-      <Filter>BiomeH</Filter>
+      <Filter>WorldH\BiomeH</Filter>
     </ClInclude>
     <ClInclude Include="Snow_Biome.h">
-      <Filter>BiomeH</Filter>
+      <Filter>WorldH\BiomeH</Filter>
     </ClInclude>
     <ClInclude Include="Crosshair.h">
       <Filter>Header files</Filter>
@@ -100,7 +103,10 @@
       <Filter>WorldH</Filter>
     </ClInclude>
     <ClInclude Include="Taiga_Biome.h">
-      <Filter>BiomeH</Filter>
+      <Filter>WorldH\BiomeH</Filter>
+    </ClInclude>
+    <ClInclude Include="Birch_Biome.h">
+      <Filter>WorldH\BiomeH</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -122,17 +128,17 @@
     <Filter Include="Shaders">
       <UniqueIdentifier>{1dc92b7e-1513-4afb-a8c0-3120398fdb1b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="BiomeH">
-      <UniqueIdentifier>{65080f53-8392-42a4-beca-6ebc76ec85be}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="BiomeC">
-      <UniqueIdentifier>{b07e58da-905f-4d19-a786-f2ce71493871}</UniqueIdentifier>
-    </Filter>
     <Filter Include="WorldH">
       <UniqueIdentifier>{c9baa2fb-cbe7-4f13-91a6-47d0d1f2b653}</UniqueIdentifier>
     </Filter>
     <Filter Include="WorldC">
       <UniqueIdentifier>{e17b0405-2178-4cf1-a68c-58d52b6deb6c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="WorldH\BiomeH">
+      <UniqueIdentifier>{65080f53-8392-42a4-beca-6ebc76ec85be}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="WorldC\BiomeC">
+      <UniqueIdentifier>{b07e58da-905f-4d19-a786-f2ce71493871}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

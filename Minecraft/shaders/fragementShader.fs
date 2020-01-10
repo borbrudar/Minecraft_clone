@@ -9,13 +9,14 @@ in vec3 FragPos;
 uniform sampler2D texture0;
 uniform vec3 lightPos;
 uniform vec3 viewPos;
+uniform vec3 lightColor;
 
 void main()
 {
 	//ambient lighting
-	vec3 lightColor = vec3(1.f,1.f,1.f);
+	vec3 ambLig = vec3(1,1,1);
 	float ambientStrength = 0.15f;
-	vec4 ambient = ambientStrength * vec4(lightColor,1.f);
+	vec4 ambient = ambientStrength * vec4(ambLig,1.f);
 
 	//diffuse lighting
 	vec3 norm = normalize(Normal);

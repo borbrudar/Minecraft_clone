@@ -144,6 +144,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\res\include\glad\glad.c" />
+    <ClCompile Include="Birch_Biome.cpp" />
     <ClCompile Include="Block.cpp" />
     <ClCompile Include="Block_Heavy.cpp" />
     <ClCompile Include="Chunk.cpp" />
@@ -162,6 +163,7 @@
     <ClInclude Include="..\..\..\..\Desktop\PerlinNoise-master\PerlinNoise.hpp" />
     <ClInclude Include="..\res\include\stb_image.h" />
     <ClInclude Include="Biome.h" />
+    <ClInclude Include="Birch_Biome.h" />
     <ClInclude Include="Block.h" />
     <ClInclude Include="Block_Heavy.h" />
     <ClInclude Include="Camera.h" />

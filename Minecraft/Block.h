@@ -9,7 +9,7 @@
 class block_type {
 public:
 	enum class type {
-		dirt,
+		grass,
 		stone,
 		tree,
 		leaf,
@@ -19,7 +19,9 @@ public:
 		snow, 
 		ice,
 		taigatree,
-		taigaleaf
+		taigaleaf,
+		birchtree,
+		dirt
 	};
 };
 

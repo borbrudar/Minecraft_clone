@@ -23,6 +23,8 @@ public:
 		textures.push_back("textures/ice.jpg");
 		textures.push_back("textures/taigawood.png");
 		textures.push_back("textures/taigaleaf.jpg");
+		textures.push_back("textures/birchtree.jpg");
+		textures.push_back("textures/dirt.jpg");
 
 		tex.loadTexture(textures, textures.size());
 
