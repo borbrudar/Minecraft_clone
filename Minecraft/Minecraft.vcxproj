@@ -156,6 +156,7 @@
     <ClCompile Include="Model.cpp" />
     <ClCompile Include="Snow_Biome.cpp" />
     <ClCompile Include="stb_image.cpp" />
+    <ClCompile Include="Structure.cpp" />
     <ClCompile Include="Taiga_Biome.cpp" />
     <ClCompile Include="World.cpp" />
   </ItemGroup>
@@ -179,6 +180,7 @@
     <ClInclude Include="State.h" />
     <ClInclude Include="Taiga_Biome.h" />
     <ClInclude Include="Texture.h" />
+    <ClInclude Include="Structure.h" />
     <ClInclude Include="World.h" />
   </ItemGroup>
   <ItemGroup>

@@ -6,7 +6,8 @@ World::World(int numberOfChunks, Shader shader) : numberOfChunks(numberOfChunks)
 	chunks.resize(numberOfChunks);
 	chunkMult = (int)sqrt(numberOfChunks);
 
-	std::default_random_engine engine;
+	std::random_device rd;
+	std::default_random_engine engine(rd());
 	std::uniform_real_distribution<float> dist(0.01, 0.1);
 	add = dist(engine);
 
@@ -71,15 +72,18 @@ void World::generateHeightMap()
 	int worldSize = chunkArea * numberOfChunks;
 	heights.resize(worldSize);
 	
-	std::default_random_engine engine;
-	std::uniform_real_distribution<float> dist(0.05, 0.15);
+	std::mt19937 rd;
+	std::default_random_engine engine(rd());
+	//std::uniform_real_distribution<float> dist(0.05, 0.1);
+	std::uniform_int_distribution<int> h(7, 8);
 	
 	//generate the map
 	for (int x = 0; x < (chunkSize * chunkMult); x++) {
 		for (int y = 0; y < (chunkSize * chunkMult); y++) {
-			int temp = floor(map(abs(noiseMap.noise(x + add, y + add, 0.0)), 0, 1, chunkSize / 4, chunkSize ));
+			//int temp = floor(map(abs(noiseMap.noise(x + add, y + add, 0.0)), 0, 1, chunkSize / 4, chunkSize ));
+			int temp = h(engine);
 			heights[x + (y * chunkSize * chunkMult)] = temp;
-			add = dist(engine);
+			//add += dist(engine);
 		}
 	}
 	//pass the map to every chunk

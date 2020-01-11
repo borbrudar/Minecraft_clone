@@ -3,13 +3,13 @@
 void Desert_Biome::drawBiome(Shader shader, Block_Heavy & data, glm::mat4 model)
 {
 	for (int i = 0; i < cacti.size(); i++) {
-		for (int j = 0; j < cacti[i].trunk.size(); j++) {
-			model[3][0] = cacti[i].trunk[j].x;
-			model[3][1] = cacti[i].trunk[j].y;
-			model[3][2] = cacti[i].trunk[j].z;
+		for (int j = 0; j < cacti[i].part1.size(); j++) {
+			model[3][0] = cacti[i].part1[j].x;
+			model[3][1] = cacti[i].part1[j].y;
+			model[3][2] = cacti[i].part1[j].z;
 			shader.setMat4("model", model);
 
-			cacti[i].trunk[j].draw(shader, data);
+			cacti[i].part1[j].draw(shader, data);
 
 		}
 	}
@@ -46,11 +46,12 @@ void Desert_Biome::setBiomeData(int chunkSize, int modelX, int modelZ,int modelY
 	cacti.resize(3);
 
 	for (int i = 0; i < cacti.size(); i++) {
+		cacti[i].setStructureData(structureType::cactus);
 		int x = pos(engine), z = pos(engine);
-		for (int j = 0; j < cacti[i].trunk.size(); j++) {
-			cacti[i].trunk[j].x = x + (modelX * chunkSize);
-			cacti[i].trunk[j].z = z + (modelZ * chunkSize);
-			cacti[i].trunk[j].y = heights[x + (z * chunkSize)] + modelY + j;
+		for (int j = 0; j < cacti[i].part1.size(); j++) {
+			cacti[i].part1[j].x = x + (modelX * chunkSize);
+			cacti[i].part1[j].z = z + (modelZ * chunkSize);
+			cacti[i].part1[j].y = heights[x + (z * chunkSize)] + modelY + j;
 		}
 	}
 

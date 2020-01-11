@@ -46,6 +46,9 @@
     <ClCompile Include="Birch_Biome.cpp">
       <Filter>WorldC\BiomeC</Filter>
     </ClCompile>
+    <ClCompile Include="Structure.cpp">
+      <Filter>WorldC\BiomeC</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\Desktop\PerlinNoise-master\PerlinNoise.hpp">
@@ -106,6 +109,9 @@
       <Filter>WorldH\BiomeH</Filter>
     </ClInclude>
     <ClInclude Include="Birch_Biome.h">
+      <Filter>WorldH\BiomeH</Filter>
+    </ClInclude>
+    <ClInclude Include="Structure.h">
       <Filter>WorldH\BiomeH</Filter>
     </ClInclude>
   </ItemGroup>

@@ -4,24 +4,24 @@ void Taiga_Biome::drawBiome(Shader shader, Block_Heavy & data, glm::mat4 model)
 {
 	//draw the trees
 	for (int i = 0; i < trees.size(); i++) {
-		for (int j = 0; j < trees[i].trunk.size(); j++) {
-			int x = trees[i].trunk[j].x, y = trees[i].trunk[j].y, z = trees[i].trunk[j].z;
+		for (int j = 0; j < trees[i].part1.size(); j++) {
+			int x = trees[i].part1[j].x, y = trees[i].part1[j].y, z = trees[i].part1[j].z;
 			model[3][0] = x;
 			model[3][1] = y;
 			model[3][2] = z;
 			shader.setMat4("model", model);
 
-			trees[i].trunk[j].draw(shader, data);
+			trees[i].part1[j].draw(shader, data);
 
-			if (j == (trees[i].trunk.size() - 1)) {
-				trees[i].setTreeTop(x, y, z);
-				for (int k = 0; k < trees[i].treeTop.size(); k++) {
-					model[3][0] = trees[i].treeTop[k].x;
-					model[3][1] = trees[i].treeTop[k].y;
-					model[3][2] = trees[i].treeTop[k].z;
+			if (j == (trees[i].part1.size() - 1)) {
+				trees[i].setStructure(x, y, z);
+				for (int k = 0; k < trees[i].part2.size(); k++) {
+					model[3][0] = trees[i].part2[k].x;
+					model[3][1] = trees[i].part2[k].y;
+					model[3][2] = trees[i].part2[k].z;
 					shader.setMat4("model", model);
 
-					trees[i].treeTop[k].draw(shader, data);
+					trees[i].part2[k].draw(shader, data);
 				}
 			}
 		}
@@ -50,11 +50,12 @@ void Taiga_Biome::setBiomeData(int chunkSize, int modelX, int modelZ, int modelY
 	trees.resize(3);
 
 	for (int i = 0; i < trees.size(); i++) {
+		trees[i].setStructureData(structureType::taiga_tree);
 		int x = pos(engine), z = pos(engine);
-		for (int j = 0; j < trees[i].trunk.size(); j++) {
-			trees[i].trunk[j].x = x + (modelX * chunkSize);
-			trees[i].trunk[j].z = z + (modelZ * chunkSize);
-			trees[i].trunk[j].y = heights[x + (z * chunkSize)] + modelY + j;
+		for (int j = 0; j < trees[i].part1.size(); j++) {
+			trees[i].part1[j].x = x + (modelX * chunkSize);
+			trees[i].part1[j].z = z + (modelZ * chunkSize);
+			trees[i].part1[j].y = heights[x + (z * chunkSize)] + modelY + j;
 		}
 	}
 }

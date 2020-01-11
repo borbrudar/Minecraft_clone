@@ -2,6 +2,7 @@
 #include "Shader.h"
 #include "Block_Heavy.h"
 #include "Block.h"
+#include "Structure.h"
 
 class Biome {
 public:

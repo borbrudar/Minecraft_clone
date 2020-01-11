@@ -2,18 +2,18 @@
 
 void Snow_Biome::drawBiome(Shader shader, Block_Heavy & data, glm::mat4 model)
 {
-	//draw the ice structures 
+	//draw the part1 structures 
 	for (int i = 0; i < icy.size(); i++) {
-		icy[i].setIceStructure(positions[i].x, positions[i].y, positions[i].z);
-
-		for (int j = 0; j < icy[i].ice.size(); j++) {
-			int x = icy[i].ice[j].x, y = icy[i].ice[j].y, z = icy[i].ice[j].z;
+		icy[i].setStructure(positions[i].x, positions[i].y + 1, positions[i].z);
+		
+		for (int j = 0; j < icy[i].part1.size(); j++) {
+			int x = icy[i].part1[j].x, y = icy[i].part1[j].y, z = icy[i].part1[j].z;
 			model[3][0] = x;
 			model[3][1] = y;
 			model[3][2] = z;
 			shader.setMat4("model", model);
 
-			icy[i].ice[j].draw(shader, data);
+			icy[i].part1[j].draw(shader, data);
 		}
 	}
 }
@@ -29,7 +29,7 @@ void Snow_Biome::setBiomeData(int chunkSize, int modelX, int modelZ,int modelY, 
 		}
 	}
 
-	//load the ice structures positions
+	//load the part1 structures positions
 	std::random_device rd;
 	std::default_random_engine engine(rd());
 	std::uniform_int_distribution<int> pos(1, chunkSize - 1);
@@ -37,6 +37,7 @@ void Snow_Biome::setBiomeData(int chunkSize, int modelX, int modelZ,int modelY, 
 	positions.resize(3);
 
 	for (int i = 0; i < icy.size(); i++) {
+		icy[i].setStructureData(structureType::ice_struct);
 		int x = pos(engine), z = pos(engine);
 		positions[i].x = x + (modelX * chunkSize);
 		positions[i].z = z + (modelZ * chunkSize);
