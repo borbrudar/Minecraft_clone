@@ -9,7 +9,7 @@ World::World(int numberOfChunks, Shader shader) : numberOfChunks(numberOfChunks)
 	std::random_device rd;
 	std::default_random_engine engine(rd());
 	std::uniform_real_distribution<float> dist(0.01, 0.1);
-	add = dist(engine);
+	//add = dist(engine);
 
 	//load the texture(s)
 	megaBlock.loadBlock(shader);

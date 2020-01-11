@@ -114,6 +114,9 @@
     <ClInclude Include="Structure.h">
       <Filter>WorldH\BiomeH</Filter>
     </ClInclude>
+    <ClInclude Include="Light.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header files">

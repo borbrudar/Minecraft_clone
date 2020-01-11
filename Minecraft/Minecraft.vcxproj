@@ -172,6 +172,7 @@
     <ClInclude Include="Crosshair.h" />
     <ClInclude Include="Desert_Biome.h" />
     <ClInclude Include="Forest_Biome.h" />
+    <ClInclude Include="Light.h" />
     <ClInclude Include="Menu.h" />
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="Model.h" />

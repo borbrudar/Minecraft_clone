@@ -4,7 +4,6 @@
 #include "State.h"
 #include <PerlinNoise.hpp>
 #include "Block_Heavy.h"
-
 class World : public State{
 public:
 //constructors
@@ -26,7 +25,6 @@ private:
 	//variables for perlin noise
 	std::vector<int> heights;
 	siv::PerlinNoise noiseMap;
-	float add;
 	//utuility variables
 	int numberOfChunks, chunkNumber = 0, chunkMult;
 	int chunkSize = 9, chunkArea = chunkSize * chunkSize, chunkVolume = chunkArea * chunkSize;

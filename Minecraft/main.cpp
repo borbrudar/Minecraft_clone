@@ -11,6 +11,7 @@
 #include "State.h"
 #include "Menu.h"
 #include "Crosshair.h"
+#include "Light.h"
 
 #include <iostream>
 #include <functional>
@@ -91,13 +92,8 @@ int main() {
 	//projection matrix - model and view are elsewhere
 	glm::mat4 projection = glm::perspective(glm::radians(45.0f), (float)screenWidth / (float)screenHeight, 0.1f, 100.0f);
 
-	//diffuse lighting
-	glm::vec3 lightPos = glm::vec3(15, 10, 15);
-	defShader.setVec3("lightPos", lightPos);
-	glm::vec3 lightColor = glm::vec3(1, 1, 1);
-	defShader.setVec3("lightColor", lightColor);
-	
-	//day/night cycle
+	//lighting
+	Light sun;
 	bool day = true;
 
 	//crosshair
@@ -136,24 +132,13 @@ int main() {
 		defShader.setMat4("projection", projection);	
 		//lighting
 		defShader.setVec3("viewPos", camera.Position);
-		defShader.setVec3("lightPos", lightPos);
+		sun.update(defShader);
 
-		//lighting--
-		lightPos.x = 18;
-		lightPos.z = abs(std::sin(glfwGetTime() / 8)) * 36; // * is number of blocks
-		lightPos.y = 50 * std::sin(glfwGetTime() / 4);      // / has to be 2x on z than y
-
-		if (lightPos.y < -16) lightColor = glm::vec3(0, 0, 0);
-		else lightColor = glm::vec3(1, 1, 1);
-		defShader.setVec3("lightColor", lightColor);
-		//---
-
+		//draw the crosshair
 		if (gameState == state::game) hair.drawCrosshair(menuShader);
 		//draw the world
 		if (gameState == state::game) state->draw(defShader); 
 		else if(gameState == state::menu) state->draw(menuShader);
-
-		
 		
 		//----------------------------------------------------------------------------------
 		glfwSwapBuffers(window);
