@@ -107,7 +107,7 @@ int main() {
 
 	//music 
 	SoundEngine->play2D("audio/music.mp3", GL_TRUE);
-	SoundEngine->setSoundVolume(0.05f);
+	SoundEngine->setSoundVolume(0.2f);
 
 	//render loop 
 	while (!glfwWindowShouldClose(window)) {
