@@ -5,6 +5,8 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
+#include <irk/irrKlang.h>
+
 #include "Shader.h"
 #include "Camera.h"
 #include "World.h"
@@ -33,6 +35,9 @@ bool firstMouse = true;
 // time
 float deltaTime = 0.0f;
 float lastFrame = 0.0f;
+
+//sound
+irrklang::ISoundEngine *SoundEngine = irrklang::createIrrKlangDevice();
 
 //chunks (numberOfChunks is a perfect square)
 int numberOfChunks = 16;
@@ -100,6 +105,10 @@ int main() {
 	Crosshair hair;
 	hair.loadCrosshair(menuShader);
 
+	//music 
+	SoundEngine->play2D("audio/music.mp3", GL_TRUE);
+	SoundEngine->setSoundVolume(0.05f);
+
 	//render loop 
 	while (!glfwWindowShouldClose(window)) {
 		//check the game state
@@ -153,22 +162,6 @@ int main() {
 void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 {
 	glViewport(0, 0, width, height);
-}
-
-//processes input
-void processInput(GLFWwindow *window)
-{
-	if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
-		glfwSetWindowShouldClose(window, true);
-
-	if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
-		camera.ProcessKeyboard(FORWARD, deltaTime);
-	if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
-		camera.ProcessKeyboard(BACKWARD, deltaTime);
-	if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
-		camera.ProcessKeyboard(LEFT, deltaTime);
-	if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
-		camera.ProcessKeyboard(RIGHT, deltaTime);
 }
 
 //process mouse input
