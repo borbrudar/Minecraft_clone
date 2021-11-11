@@ -16,7 +16,7 @@ void main()
 	//ambient lighting
 	vec3 ambLig = vec3(1.0,1.0,1.0);
 	float ambientStrength = 0.15;
-	vec4 ambient = ambientStrength * vec4(ambLig,1.0);
+	vec3 ambient = ambientStrength * ambLig;
 
 	//diffuse lighting
 	vec3 norm = normalize(Normal);
@@ -31,8 +31,8 @@ void main()
 	vec3 viewDir = normalize(viewPos - FragPos);
 	vec3 reflectDir = reflect(-lightDir, norm);  
 
-	float spec = pow(max(dot(viewDir, reflectDir), 0.0), 32);
+	float spec = pow(max(dot(viewDir, reflectDir), 0.0), 32.0);
     vec3 specular = specularStrength * spec * lightColor;  
 
-	FragColor = texture(texture0, TexCoord) * (ambient + diffuse + specular);
+	FragColor = texture(texture0, TexCoord) * vec4(ambient + diffuse + specular, 1.0);
 }

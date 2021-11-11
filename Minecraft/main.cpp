@@ -106,7 +106,7 @@ int main() {
 	hair.loadCrosshair(menuShader);
 
 	//music 
-	SoundEngine->play2D("audio/music.mp3", GL_TRUE);
+	SoundEngine->play2D("audio/music.wav", GL_TRUE);
 	SoundEngine->setSoundVolume(0.2f);
 
 	//render loop 
