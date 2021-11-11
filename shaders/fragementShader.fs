@@ -14,9 +14,9 @@ uniform vec3 lightColor;
 void main()
 {
 	//ambient lighting
-	vec3 ambLig = vec3(1,1,1);
-	float ambientStrength = 0.15f;
-	vec4 ambient = ambientStrength * vec4(ambLig,1.f);
+	vec3 ambLig = vec3(1.0,1.0,1.0);
+	float ambientStrength = 0.15;
+	vec4 ambient = ambientStrength * vec4(ambLig,1.0);
 
 	//diffuse lighting
 	vec3 norm = normalize(Normal);

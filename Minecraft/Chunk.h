@@ -14,6 +14,7 @@
 #include <math.h>
 #include <vector>
 #include <random>
+#include <memory>
 
 class Chunk {
 public:
