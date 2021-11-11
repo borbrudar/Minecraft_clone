@@ -62,7 +62,6 @@ PRIVATE
 "${CMAKE_CURRENT_SOURCE_DIR}/res/include/"
 "${CMAKE_CURRENT_SOURCE_DIR}/res/include/glad/"
 "${CMAKE_CURRENT_SOURCE_DIR}/res/include/assimp/"
-"${CMAKE_CURRENT_SOURCE_DIR}/res/include/irk/"
 "${CMAKE_CURRENT_SOURCE_DIR}/res/include/glm/"
 "${CMAKE_CURRENT_SOURCE_DIR}/res/include/KHR/"
 "${CMAKE_CURRENT_SOURCE_DIR}/external/GLFW/include/GLFW/"
@@ -70,10 +69,8 @@ $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/Minecraft/>
 $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}/Minecraft/>
 )
 
-
 #-----------COPY RES DIR-------------------------
 file(COPY res DESTINATION "${CMAKE_CURRENT_BINARY_DIR}")
-file(COPY audio DESTINATION "${CMAKE_CURRENT_BINARY_DIR}")
 file(COPY fonts DESTINATION "${CMAKE_CURRENT_BINARY_DIR}")
 file(COPY shaders DESTINATION "${CMAKE_CURRENT_BINARY_DIR}")
 file(COPY textures DESTINATION "${CMAKE_CURRENT_BINARY_DIR}")
@@ -82,24 +79,18 @@ file(COPY textures DESTINATION "${CMAKE_CURRENT_BINARY_DIR}")
 add_subdirectory(external/GLFW)
 add_subdirectory(res/include/glad)
 target_link_directories(${PR_NAME} PUBLIC external/GLFW/src/ res/libs/)
-target_link_libraries(${PR_NAME} PRIVATE glfw glad IrrKlang)
+target_link_libraries(${PR_NAME} PRIVATE glfw glad)
 
 #--------INSTALL LINUX---------------------------------
 install(TARGETS ${PR_NAME} 
 RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})
 
 install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/res DESTINATION ${CMAKE_INSTALL_BINDIR})
-install(DIRECTORY {CMAKE_CURRENT_SOURCE_DIR}/audio DESTINATION ${CMAKE_INSTALL_BINDIR})
 install(DIRECTORY {CMAKE_CURRENT_SOURCE_DIR}/fonts DESTINATION ${CMAKE_INSTALL_BINDIR})
 install(DIRECTORY {CMAKE_CURRENT_SOURCE_DIR}/shaders DESTINATION ${CMAKE_INSTALL_BINDIR})
 install(DIRECTORY {CMAKE_CURRENT_SOURCE_DIR}/textures DESTINATION ${CMAKE_INSTALL_BINDIR})
 
 if(WIN32)
-    #sfml
-    install(FILES 
-        "${CMAKE_CURRENT_BINARY_DIR}/ikpMP3.dll"
-        "${CMAKE_CURRENT_BINARY_DIR}/irrKlang.dll" 
-        DESTINATION ${CMAKE_INSTALL_BINDIR})
 elseif(UNIX)
     install(TARGETS ${PR_NAME} 
        LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR})

@@ -5,8 +5,6 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
-#include <irk/irrKlang.h>
-
 #include "Shader.h"
 #include "Camera.h"
 #include "World.h"
@@ -35,9 +33,6 @@ bool firstMouse = true;
 // time
 float deltaTime = 0.0f;
 float lastFrame = 0.0f;
-
-//sound
-irrklang::ISoundEngine *SoundEngine = irrklang::createIrrKlangDevice();
 
 //chunks (numberOfChunks is a perfect square)
 int numberOfChunks = 16;
@@ -104,10 +99,6 @@ int main() {
 	//crosshair
 	Crosshair hair;
 	hair.loadCrosshair(menuShader);
-
-	//music 
-	SoundEngine->play2D("audio/music.wav", GL_TRUE);
-	SoundEngine->setSoundVolume(0.2f);
 
 	//render loop 
 	while (!glfwWindowShouldClose(window)) {
